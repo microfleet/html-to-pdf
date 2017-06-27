@@ -1,0 +1,22 @@
+{
+  "$id": "render",
+  "required": ["tex", "input"],
+  "properties": {
+    "tex": {
+      "type": "string",
+      "description": "LaTeX template name"
+    },
+    "input": {
+      "type": "object",
+      "description": "name of the input generator to be used for data fetching"
+    },
+    "data": {
+      "description": "input params for generating files",
+      "type": "object"
+    },
+    "meta": {
+      "type": "object",
+      "description": "meta would be passed to @microfleet/files service for storage settings"
+    }
+  }
+}
