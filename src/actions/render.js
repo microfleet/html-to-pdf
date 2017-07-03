@@ -13,6 +13,9 @@ const TemplateMissing = new ValidationError('template not initialized', 400);
  * Renders LaTeX template and stores it based on the passed configuration
  * @param  {MserviceRequest} data - Incoming request.
  * @param  {Object} data.params - Input payload for the request.
+ * @param  {String} data.params.tex - Name of a template to render
+ * @param  {Object} data.params.input - Context
+ * @param  {Object} data.params.meta - Document metadata. https://github.com/makeomatic/ms-files/blob/master/schemas/common.json#L190
  * @returns {Promise<*>} data with file location.
  */
 module.exports = function render({ params }) {
@@ -22,13 +25,13 @@ module.exports = function render({ params }) {
   assert.ifError(template ? undefined : TemplateMissing);
 
   // render and store PDF
-  Promise.fromCallback((next) => {
+  return Promise.fromCallback((next) => {
     let response = null;
 
     // we need to pull response of uploadStream
     const mustacheToLaTeX = mu2.render(template, params.input);
-    const LaTeXtoPDF = latex();
-    const storePDFStream = uploadStream(params.meta);
+    const LaTeXtoPDF = latex.call(this);
+    const storePDFStream = uploadStream.call(this, params.meta);
 
     // will only have 1 chunk
     storePDFStream.once('data', chunk => (response = chunk));

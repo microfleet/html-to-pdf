@@ -1,5 +1,5 @@
 const path = require('path');
-const { routerExtension, ActionTransport } = require('mservice');
+const { routerExtension, ActionTransport } = require('@microfleet/core');
 
 /**
  * This extension defaults schemas to the name of the action
@@ -21,7 +21,7 @@ exports.router = {
   routes: {
     directory: path.resolve(__dirname, '../actions'),
     prefix: 'latex',
-    setAsDefault: true,
+    setTransportsAsDefault: true,
     transports: [ActionTransport.amqp],
   },
   extensions: {

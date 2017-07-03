@@ -19,7 +19,6 @@ describe('mustacheToLatexStream', () => {
 
     // must be defined
     expect(conf.tex.example).toBeDefined();
-    expect(conf.inputs.example).toBeDefined();
   });
 
   it('renders mustache to tex definition', (next) => {

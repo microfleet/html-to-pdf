@@ -7,6 +7,7 @@
   "author": "Vitaly Aminev <v@makeomatic.ca>",
   "license": "MIT",
   "dependencies": {
+    "@microfleet/core": "^9.1.0",
     "@microfleet/transport-amqp": "^9.0.1",
     "bl": "^1.2.1",
     "bluebird": "^3.5.0",
@@ -16,9 +17,7 @@
     "duplexify": "^3.5.0",
     "flush-write-stream": "^1.0.2",
     "from2": "^2.3.0",
-    "ms-amqp-transport": "^8.0.0",
     "ms-validation": "^5.0.1",
-    "mservice": "^8.0.0",
     "mu2": "^0.5.21",
     "mustache": "^2.3.0",
     "mustachio": "^1.0.1",
@@ -45,6 +44,7 @@
     "eslint-plugin-import": "^2.3.0",
     "eslint-plugin-promise": "^3.5.0",
     "jest": "^20.0.4",
+    "jest-environment-node-debug": "^2.0.0",
     "json": "^9.0.6",
     "latest-version-cli": "^1.1.0",
     "nyc": "^11.0.2",
@@ -54,7 +54,8 @@
   "jest": {
     "testPathIgnorePatterns": [
       "/node_modules/",
-      "/fixtures/"
+      "/fixtures/",
+      "/configs/"
     ]
   }
 }

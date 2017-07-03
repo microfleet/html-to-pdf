@@ -23,12 +23,14 @@ function joinPaths(inputs) {
  * @return {DestroyableTransform}
  */
 function latex(options = {}) {
+  const { log } = this;
   const duplexStream = duplex();
 
   /**
    * Emits the given error to the returned output stream.
    */
   function handleErrors(err) {
+    log.error('handle error;', err);
     duplexStream.destroy(err);
   }
 
@@ -102,8 +104,13 @@ function latex(options = {}) {
      * Returns the PDF stream after the final run.
      */
     function returnDocument() {
+      log.info('return document');
       const pdfPath = path.join(tempPath, 'texput.pdf');
       const pdfStream = fs.createReadStream(pdfPath);
+
+      pdfStream.on('end', () => {
+        log.info('pdf stream finished');
+      });
 
       duplexStream.setWritable(null);
       duplexStream.setReadable(pdfStream);
@@ -116,12 +123,20 @@ function latex(options = {}) {
      */
     function runLatex(inputStream) {
       const tex = spawn(cmd, args, opts);
+      const startupErrorLog = fs.createWriteStream(path.join(tempPath, 'error.log'));
+
+      inputStream.on('end', () => {
+        log.info('read stream ended');
+      });
 
       duplexStream.setReadable(inputStream);
       duplexStream.setWritable(tex.stdin);
 
       // Prevent Node from crashing on compilation error.
       tex.stdin.on('error', handleErrors);
+
+      // Write down errors during the launch -> handle startup error
+      tex.stderr.pipe(startupErrorLog);
 
       tex.on('error', () => {
         handleErrors(new Error(`Error: Unable to run ${cmd} command.`));
@@ -130,7 +145,6 @@ function latex(options = {}) {
       tex.on('exit', (code) => {
         if (code !== 0) {
           printErrors(tempPath, userLogPath);
-
           return;
         }
 

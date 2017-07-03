@@ -14,8 +14,9 @@ describe('mustacheToLatexStream', () => {
 
   test('renders mustache to tex definition', (next) => {
     const template = conf.tex.example_2;
+    const renderer = latex.call({ log: console });
 
-    mu2.render(template, sampleView).pipe(latex()).pipe(bl((err) => {
+    mu2.render(template, sampleView).pipe(renderer).pipe(bl((err) => {
       if (err) {
         return next.fail(err);
       }

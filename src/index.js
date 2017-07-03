@@ -1,4 +1,4 @@
-const Mservice = require('mservice');
+const Mservice = require('@microfleet/core');
 const merge = require('lodash/merge');
 
 /**

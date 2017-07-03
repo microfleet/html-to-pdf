@@ -3,5 +3,8 @@
  * @type {Object}
  */
 exports.files = {
-
+  initUpload: {
+    route: 'files.upload',
+    timeout: 15000,
+  },
 };
