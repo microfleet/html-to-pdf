@@ -11,6 +11,7 @@ const FILENAME = path.resolve(__dirname, '../fixtures/sample.pdf');
 
 describe('render action', () => {
   let service;
+
   beforeAll(() => {
     service = this.service = new Latex({ ...amqpConfig });
 
@@ -24,7 +25,7 @@ describe('render action', () => {
   afterAll(() => {
     return this.service.close()
       .finally(() => {
-        this.service = null;
+        service = this.service = null;
       });
   });
 

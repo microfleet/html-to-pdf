@@ -34,6 +34,9 @@ exports.amqp = {
     queue: 'ms-latex',
     neck: 10,
     onComplete,
+    connection: {
+      host: 'rabbitmq',
+    },
   },
   router: {
     enabled: true,

@@ -136,7 +136,7 @@ function latex(options = {}) {
       tex.stdin.on('error', handleErrors);
 
       // Write down errors during the launch -> handle startup error
-      tex.stderr.pipe(startupErrorLog);
+      tex.stderr.pipe(startupErrorLog, { autoClose: true });
 
       tex.on('error', () => {
         handleErrors(new Error(`Error: Unable to run ${cmd} command.`));

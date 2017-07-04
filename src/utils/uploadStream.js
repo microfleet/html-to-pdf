@@ -90,9 +90,14 @@ module.exports = function uploadThroughStream(meta) {
         }],
       };
 
+      const { route, ...options } = files.initUpload;
+
+      this.log.debug('initiating upload');
       amqp
-        .publishAndWait(files.initUpload.route, message, files.initUpload.timeout)
+        .publishAndWait(route, message, options)
         .tap((fileData) => {
+          this.log.debug('file data:', fileData);
+
           const isPublic = fileData.public;
 
           // we always have only 1 file
@@ -112,7 +117,6 @@ module.exports = function uploadThroughStream(meta) {
           // upload to google
           return request.put({ url: file.location, body: Buffer.concat(contents), headers });
         })
-        .tapCatch(err => this.log.error(err))
         .asCallback(next);
     }
   );

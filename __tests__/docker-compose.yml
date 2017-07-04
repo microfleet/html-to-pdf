@@ -16,6 +16,7 @@ services:
     hostname: ms-files
     volumes:
       - ./configs:/configs:ro
+      - ./.env:/src/.env:ro
     environment:
       NCONF_FILE_PATH: '["/configs/amqp.js","/configs/redis.js","/configs/files.js"]'
       NODE_ENV: production
