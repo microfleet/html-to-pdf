@@ -1,6 +1,31 @@
 {
   "$id": "config",
   "properties": {
-
+    "pdfPrinter": {
+      "templates": {
+        "type": "string",
+        "minLength": 1
+      },
+      "retryOptions": {
+        "type": "object",
+        "properties": {
+          "interval": {
+            "type": "number"
+          },
+          "timeout": {
+            "type": "number"
+          },
+          "max_tries": {
+            "type": "number"
+          },
+          "backoff": {
+            "type": "number"
+          },
+          "disable": {
+            "type": "boolean"
+          }
+        }
+      }
+    }
   }
 }

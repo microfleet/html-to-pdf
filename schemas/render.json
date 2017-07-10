@@ -1,17 +1,17 @@
 {
   "$id": "render",
-  "required": ["tex", "input"],
+  "required": ["template", "context", "meta"],
   "properties": {
-    "tex": {
+    "template": {
       "type": "string",
-      "description": "LaTeX template name"
+      "description": "template name"
     },
-    "input": {
+    "context": {
       "type": "object",
-      "description": "name of the input generator to be used for data fetching"
+      "description": "input params for generating files"
     },
-    "data": {
-      "description": "input params for generating files",
+    "documentOptions": {
+      "description": "document format options",
       "type": "object"
     },
     "meta": {

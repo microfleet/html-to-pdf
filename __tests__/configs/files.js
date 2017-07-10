@@ -1,6 +1,11 @@
 const { env } = process;
 
 module.exports = {
+  amqp: {
+    transport: {
+      queue: 'files',
+    },
+  },
   transport: [{
     options: {
       gce: {

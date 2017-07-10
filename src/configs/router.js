@@ -20,7 +20,7 @@ const auditLog = routerExtension('audit/log');
 exports.router = {
   routes: {
     directory: path.resolve(__dirname, '../actions'),
-    prefix: 'latex',
+    prefix: 'pdfPrinter',
     setTransportsAsDefault: true,
     transports: [ActionTransport.amqp],
   },

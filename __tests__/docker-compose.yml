@@ -11,7 +11,7 @@ services:
     hostname: rabbitmq
 
   ms-files:
-    image: makeomatic/ms-files
+    image: makeomatic/ms-files:latest
     container_name: ms-files
     hostname: ms-files
     volumes:
@@ -23,7 +23,7 @@ services:
 
   tester:
     container_name: tester
-    image: makeomatic/node:8.1.3-tex-tester
+    image: makeomatic/node:8.1.3-vips-tester-chrome
     links:
       - redis
       - rabbitmq

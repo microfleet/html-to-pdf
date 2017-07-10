@@ -1,12 +1,15 @@
-const Latex = require('../../src');
+const Printer = require('../../src');
 const amqpConfig = require('../configs/amqp');
-const log = require('debug')('ms-latex:test');
 
 describe('render action', () => {
   let send;
 
+  // jasmine global var
+  // eslint-disable-next-line no-undef
+  jasmine.DEFAULT_TIMEOUT_INTERVAL = 30000;
+
   beforeAll(() => {
-    const service = this.service = new Latex({ ...amqpConfig });
+    const service = this.service = new Printer({ ...amqpConfig });
 
     return service
       .connect()
@@ -19,15 +22,15 @@ describe('render action', () => {
       });
   });
 
-  it('should render & upload document', () => {
+  it('should render & upload document', async () => {
     const message = {
-      tex: 'example_2',
-      input: {
-        title: 'test',
+      template: 'htmlView',
+      context: {
+        name: 'World',
       },
       meta: {
         meta: {
-          name: 'example.pdf',
+          name: 'hello-world.pdf',
         },
         username: 'test',
         unlisted: true,
@@ -37,12 +40,14 @@ describe('render action', () => {
       },
     };
 
-    return send('latex.render', message)
-      .then(response => {
-        log('res:', response);
-      })
-      .catch(err => {
-        log('err:', err);
+    // const data = await send('pdfprinter.render', message);
+    return send('pdfPrinter.render', message)
+      .tap(data => {
+        console.log(data);
       });
+  });
+
+  afterAll(() => {
+    return this.service.close();
   });
 });

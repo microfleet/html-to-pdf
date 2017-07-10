@@ -1,12 +1,15 @@
+const Promise = require('bluebird');
 const Mservice = require('@microfleet/core');
 const merge = require('lodash/merge');
 
+const Chrome = require('./utils/chrome');
+
 /**
- * @class Mailer
+ * @class PdfPrinter
  * @param {Object} opts - any overrides
  * @returns {Mailer}
  */
-module.exports = class LaTeX extends Mservice {
+module.exports = class PdfPrinter extends Mservice {
 
   /**
    * Default options that are merged into core
@@ -20,9 +23,23 @@ module.exports = class LaTeX extends Mservice {
    * @return {Mailer}
    */
   constructor(opts = {}) {
-    super(merge({}, LaTeX.defaultOpts, opts));
+    super(merge({}, PdfPrinter.defaultOpts, opts));
 
     // initializes mustache to latex streams
-    require('./utils/mustacheToLatex')(this.config);
+    require('./utils/mustache')(this.config);
+
+    // define chrome config
+    this.chrome = new Chrome(this.config.chrome);
   }
+
+  connect() {
+    return super.connect()
+      .tap(async () => this.chrome.init());
+  }
+
+  close() {
+    return Promise.resolve(this.chrome.kill())
+      .then(() => super.close());
+  }
+
 };
