@@ -1,9 +1,6 @@
-const Promise = require('bluebird');
-const mu2 = require('mu2');
-const bl = require('bl');
+const mustache = require('mustache');
 const upload = require('../utils/upload');
 
-const bufferToString = buffer => buffer.toString();
 /**
  * Renders LaTeX template and stores it based on the passed configuration
  * @param  {MserviceRequest} data - Incoming request.
@@ -13,18 +10,17 @@ const bufferToString = buffer => buffer.toString();
  * @param  {Object} data.params.meta - Document metadata. https://github.com/makeomatic/ms-files/blob/master/schemas/common.json#L190
  * @returns {Promise<*>} data with file location.
  */
-module.exports = function render({ params }) {
+module.exports = async function render({ params }) {
   const template = this.config.pdfPrinter.getTemplate(params.template);
 
   // render template to html
-  const html = Promise.fromCallback(callback => (
-    mu2.render(template, params.context).pipe(bl(callback))
-  ));
+  const html = mustache.render(template, params.context);
 
-  const uploader = upload.bind(this, params.meta);
+  // print out pdf
+  const pdf = await this.chrome.printToPdf(html, params.documentOptions);
 
-  return html
-    .then(bufferToString)
-    .then(text => this.chrome.printToPdf(text, params.documentOptions))
-    .then(uploader);
+  // upload
+  const data = await upload.call(this, params.meta, pdf);
+
+  return data;
 };

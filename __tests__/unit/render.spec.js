@@ -40,10 +40,9 @@ describe('render action', () => {
       },
     };
 
-    // const data = await send('pdfprinter.render', message);
     return send('pdfPrinter.render', message)
-      .tap(data => {
-        console.log(data);
+      .tap((data) => {
+        expect(data.files[0].location).toBeDefined();
       });
   });
 

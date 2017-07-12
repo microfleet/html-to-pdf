@@ -1,7 +1,7 @@
 const glob = require('glob');
 const fs = require('fs');
-const mu2 = require('mu2');
 const assert = require('assert');
+const mustache = require('mustache');
 
 const { ValidationError } = require('common-errors');
 
@@ -19,11 +19,8 @@ module.exports = function initMustache(config) {
       const template = fs.readFileSync(`${pdfPrinter.templates}/${file}`, 'utf8');
       const name = file.slice(0, -4);
 
-      // cb called in a sync fashion
-      mu2.compileText(name, template, (err, parsedTemplate) => {
-        if (err) throw err;
-        acc[name] = parsedTemplate;
-      });
+      mustache.parse(template);
+      acc[name] = template;
 
       return acc;
     }, _templates);

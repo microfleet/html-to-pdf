@@ -2,14 +2,33 @@ const crypto = require('crypto');
 const request = require('request-promise');
 const retry = require('bluebird-retry');
 
-const digestHash = crypto.createHash('md5');
-const contentHash = source => digestHash.update(source, 'base64').digest('base64');
+/**
+ * Converts base64 string to Buffer
+ * @param {String} source Source base64-encoded string
+ * @returns {Buffer}
+ */
+const base64ToBuffer = source => Buffer.from(source, 'base64');
+
+/**
+ * Calculate a md5 hash of the provided string
+ * @param {*} source
+ * @returns {String}
+ */
+const contentHash = source => crypto.createHash('md5')
+  .update(source)
+  .digest('base64');
 
 // retry on following status codes
 // https://cloud.google.com/storage/docs/exponential-backoff
-const isRetrieble = /^(429|5\d\d)$/;
+const isRetrieble = /^(403|429|5\d\d)$/;
 const testError = error => isRetrieble.test(error.responseCode);
 
+/**
+ * Upload a document to cloud with optional retry
+ * @param {Object} payload Upload options, see available on https://github.com/request/request
+ * @param {Object} retryOptions Retry options, see available on https://github.com/demmer/bluebird-retry
+ * @returns {Promise<Object>}
+ */
 const upload = (payload, retryOptions = { disabled: true }) => {
   const uploader = () => request.put(payload);
 
@@ -25,9 +44,16 @@ const upload = (payload, retryOptions = { disabled: true }) => {
   return retry(uploader, options);
 };
 
-module.exports = function uploadFile(metadata, body) {
+/**
+ * Initiate signed url upload and perform it
+ * @param {Object} metadata Document metadata
+ * @param {String} document base64-encoded pdf file
+ * @returns {Promise<Object>}
+ */
+module.exports = function uploadFile(metadata, document) {
   const { amqp, config: { files, pdfPrinter } } = this;
 
+  const body = base64ToBuffer(document);
   const hash = contentHash(body);
   const contentLength = body.length;
 

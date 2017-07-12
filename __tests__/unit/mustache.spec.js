@@ -1,5 +1,4 @@
-const mu2 = require('mu2');
-const bl = require('bl');
+const mustache = require('mustache');
 const initMustache = require('../../src/utils/mustache');
 const config = require('../../src/config');
 
@@ -10,9 +9,7 @@ describe('mustacheStream', () => {
     name: 'example',
   };
 
-  const renderedTemplate = `
-    Hello, ${sampleView.name}
-  `;
+  const renderedTemplate = `Hello, ${sampleView.name}\n`;
 
   it('inits templates', () => {
     initMustache(conf);
@@ -30,15 +27,10 @@ describe('mustacheStream', () => {
     expect(() => conf.pdfPrinter.getTemplate('some-random-template-name')).toThrow();
   });
 
-  it('renders mustache template', (next) => {
+  it('renders mustache template', () => {
     const template = conf.pdfPrinter.getTemplate(templateName);
-    mu2.render(template, sampleView).pipe(bl((err, view) => {
-      if (err) {
-        return next(err);
-      }
+    const html = mustache.render(template, sampleView);
 
-      expect(view).toBe(renderedTemplate);
-      return next();
-    }));
+    expect(html).toBe(renderedTemplate);
   });
 });
