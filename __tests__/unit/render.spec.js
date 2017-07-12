@@ -22,6 +22,21 @@ describe('render action', () => {
       });
   });
 
+  it('should render & return documents', async () => {
+    const message = {
+      template: 'htmlView',
+      context: {
+        name: 'World',
+      },
+      meta: false,
+    };
+
+    return send('pdf.render', message)
+      .tap((data) => {
+        expect(data).toMatch(/^([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{4}|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==)$/);
+      });
+  });
+
   it('should render & upload document', async () => {
     const message = {
       template: 'htmlView',
@@ -40,9 +55,9 @@ describe('render action', () => {
       },
     };
 
-    return send('pdfPrinter.render', message)
+    return send('pdf.render', message)
       .tap((data) => {
-        expect(data.files[0].location).toBeDefined();
+        expect(data).toMatch(/^[0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$/i);
       });
   });
 

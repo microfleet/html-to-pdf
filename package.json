@@ -3,11 +3,13 @@
   "version": "1.0.0",
   "description": "Generates PDF files based on the LaTeX inputs and arbitrary data. Can be handy to create statements. Uses @microfleet/files for distributed storage and access control to such files",
   "main": "./lib/index.js",
-  "repository": "https://github.com/makeomatic/latex.git",
+  "repository": "https://github.com/@microfleet/html-to-pdf.git",
   "author": "Vitaly Aminev <v@makeomatic.ca>",
   "license": "MIT",
   "scripts": {
-    "lint": "eslint ./src"
+    "lint": "eslint ./src",
+    "test": "npm run lint && npm run test:integration",
+    "test:integration": "mdep test run --no-nycCoverage --tests \"__tests__/**/*.spec.js\" --test_framework \"jest --coverageDirectory <coverageDirectory>\" --docker_compose __tests__/docker-compose.yml"
   },
   "dependencies": {
     "@microfleet/core": "^9.1.0",
@@ -56,6 +58,7 @@
       "/node_modules/",
       "/fixtures/",
       "/configs/"
-    ]
+    ],
+    "collectCoverage": true
   }
 }

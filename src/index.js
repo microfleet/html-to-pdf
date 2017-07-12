@@ -31,7 +31,7 @@ module.exports = class PdfPrinter extends Mservice {
     const chrome = this.chrome = new Chrome(this.config.chrome);
 
     // add connectors & disconnectors
-    this.addConnector(Mservice.connectorTypes.essential, chrome.init.bind(chrome));
-    this.addDestructor(Mservice.connectorTypes.essential, chrome.kill.bind(chrome));
+    this.addConnector(Mservice.ConnectorsTypes.essential, chrome.init.bind(chrome));
+    this.addDestructor(Mservice.ConnectorsTypes.essential, chrome.kill.bind(chrome));
   }
 };

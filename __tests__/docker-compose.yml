@@ -23,7 +23,7 @@ services:
 
   tester:
     container_name: tester
-    image: makeomatic/node:8.1.4-vips-tester-chrome
+    image: makeomatic/node:8.1.4-chrome-tester
     links:
       - redis
       - rabbitmq
@@ -36,4 +36,5 @@ services:
       NODE_ENV: "test"
       DEBUG: ${DEBUG}
       DOTENV_FILE_PATH: "/src/__tests__/.env"
+      LIGHTHOUSE_CHROMIUM_PATH: /usr/bin/chromium-browser
     command: tail -f /dev/null

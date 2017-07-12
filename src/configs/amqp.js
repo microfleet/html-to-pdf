@@ -31,7 +31,7 @@ function onComplete(err, data, actionName, actions) {
  */
 exports.amqp = {
   transport: {
-    queue: 'pdfprinter',
+    queue: 'ms-html-to-pdf',
     neck: 10,
     onComplete,
     connection: {
