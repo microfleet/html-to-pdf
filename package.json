@@ -6,9 +6,12 @@
   "repository": "https://github.com/makeomatic/latex.git",
   "author": "Vitaly Aminev <v@makeomatic.ca>",
   "license": "MIT",
+  "scripts": {
+    "lint": "eslint ./src"
+  },
   "dependencies": {
     "@microfleet/core": "^9.1.0",
-    "@microfleet/transport-amqp": "^9.1.0",
+    "@microfleet/transport-amqp": "^10.1.0",
     "bluebird": "^3.5.0",
     "bluebird-retry": "^0.11.0",
     "bunyan": "^1.8.10",

@@ -1,7 +1,7 @@
-const Promise = require('bluebird');
 const Mservice = require('@microfleet/core');
 const merge = require('lodash/merge');
 
+const Mustache = require('./utils/mustache');
 const Chrome = require('./utils/chrome');
 
 /**
@@ -10,7 +10,6 @@ const Chrome = require('./utils/chrome');
  * @returns {Mailer}
  */
 module.exports = class PdfPrinter extends Mservice {
-
   /**
    * Default options that are merged into core
    * @type {Object}
@@ -26,20 +25,13 @@ module.exports = class PdfPrinter extends Mservice {
     super(merge({}, PdfPrinter.defaultOpts, opts));
 
     // initializes mustache to latex streams
-    require('./utils/mustache')(this.config);
+    Mustache(this.config);
 
     // define chrome config
-    this.chrome = new Chrome(this.config.chrome);
-  }
+    const chrome = this.chrome = new Chrome(this.config.chrome);
 
-  connect() {
-    return super.connect()
-      .tap(async () => this.chrome.init());
+    // add connectors & disconnectors
+    this.addConnector(Mservice.connectorTypes.essential, chrome.init.bind(chrome));
+    this.addDestructor(Mservice.connectorTypes.essential, chrome.kill.bind(chrome));
   }
-
-  close() {
-    return Promise.resolve(this.chrome.kill())
-      .then(() => super.close());
-  }
-
 };

@@ -19,8 +19,11 @@ module.exports = async function render({ params }) {
   // print out pdf
   const pdf = await this.chrome.printToPdf(html, params.documentOptions);
 
-  // upload
-  const data = await upload.call(this, params.meta, pdf);
+  // just return base64 data back
+  if (params.meta === false) {
+    return pdf;
+  }
 
-  return data;
+  // upload
+  return upload.call(this, params.meta, pdf);
 };

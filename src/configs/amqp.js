@@ -15,7 +15,7 @@ function onComplete(err, data, actionName, actions) {
 
   if (err.name === 'ValidationError' || isRenderAction(actionName)) {
     this.log.fatal('invalid configuration, rejecting', err);
-    actions.reject();
+    actions.ack();
     return Promise.reject(err);
   }
 

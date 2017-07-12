@@ -43,6 +43,7 @@ class Chrome {
 
     // use custom logger if provided
     this.log = logger || debug;
+    this.onLog = params => this.log.info(params.message.text);
 
     // Kill spawned Chrome process in case of ctrl-C.
     process.on(_SIGINT, async () => (
@@ -96,15 +97,14 @@ class Chrome {
 
     const { Network, Page, Console } = tab;
 
-    Console.messageAdded((params) => {
-      this.log.info(params.message.text);
-    });
+    Console.messageAdded(this.onLog);
 
-    return Promise.all([
-      Page.enable(),
-      Network.enable(),
-    ])
-    .return(tab);
+    return Promise
+      .all([
+        Page.enable(),
+        Network.enable(),
+      ])
+      .return(tab);
   }
 
   /**

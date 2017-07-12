@@ -15,8 +15,14 @@
       "type": "object"
     },
     "meta": {
-      "type": "object",
-      "description": "meta would be passed to @microfleet/files service for storage settings"
+      "anyOf": [{
+        "type": "object",
+        "description": "meta would be passed to @microfleet/files service for storage settings"
+      }, {
+        "type": "boolean",
+        "const": false,
+        "description": "if set to false, then contents of rendered PDF will be passed in base64 back"
+      }]
     }
   }
 }

@@ -16,11 +16,11 @@ const base64ToBuffer = source => Buffer.from(source, 'base64');
  */
 const contentHash = source => crypto.createHash('md5')
   .update(source)
-  .digest('base64');
+  .digest();
 
 // retry on following status codes
 // https://cloud.google.com/storage/docs/exponential-backoff
-const isRetrieble = /^(403|429|5\d\d)$/;
+const isRetrieble = /^(401|429|5[0-9]{2})$/;
 const testError = error => isRetrieble.test(error.responseCode);
 
 /**
@@ -63,7 +63,7 @@ module.exports = function uploadFile(metadata, document) {
       type: 'arbitrary',
       contentLength,
       contentType: 'application/pdf',
-      md5Hash: Buffer.from(hash, 'base64').toString('hex'),
+      md5Hash: hash.toString('hex'),
     }],
     resumable: false,
     uploadType: 'pdf',
@@ -80,7 +80,7 @@ module.exports = function uploadFile(metadata, document) {
 
       // prepare headers for upload
       const headers = {
-        'Content-MD5': hash,
+        'Content-MD5': hash.toString('base64'),
         'Cache-Control': isPublic ? 'public,max-age=31536000' : 'private,max-age=0',
         'Content-Type': 'application/pdf',
         'Content-Length': contentLength,
