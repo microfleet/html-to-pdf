@@ -97,7 +97,6 @@ module.exports = function uploadFile(metadata, document) {
       };
 
       // upload to google
-      return upload(payload, pdfPrinter.retryOptions)
-        .return(fileData.uploadId);
+      return upload(payload, pdfPrinter.retryOptions);
     });
 };

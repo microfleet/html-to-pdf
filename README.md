@@ -1,8 +1,9 @@
-# @microfleet/latex
+# @microfleet/html-to-pdf
 
-LaTeX @microfleet service is designed to render any provided LaTeX templates into a PDF and store them
-using @microfleet/files service
+HTML to PDF @microfleet service is designed to render any provided mustache template with arbitrary context and is able to send back base64 encoded PDF or upload id in case of integration with @microfleet/files
 
-## Roadmap
+## Configuration
 
-- [] render template
+## API
+
+### `pdf.render`

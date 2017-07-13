@@ -1,3 +1,4 @@
+const Promise = require('bluebird');
 const mustache = require('mustache');
 const upload = require('../utils/upload');
 
@@ -25,5 +26,8 @@ module.exports = async function render({ params }) {
   }
 
   // upload
-  return upload.call(this, params.meta, pdf);
+  return Promise
+    .bind(this, [params.meta, pdf])
+    .spread(upload)
+    .get('uploadId');
 };
