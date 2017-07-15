@@ -1,6 +1,7 @@
 {
   "$id": "render",
   "required": ["template", "context", "meta"],
+  "additionalProperties": false,
   "properties": {
     "template": {
       "type": "string",
@@ -11,7 +12,7 @@
       "description": "input params for generating files"
     },
     "documentOptions": {
-      "description": "document format options",
+      "description": "document format options - https://chromedevtools.github.io/devtools-protocol/tot/Page/#method-printToPDF",
       "type": "object"
     },
     "meta": {

@@ -3,13 +3,13 @@ const mustache = require('mustache');
 const upload = require('../utils/upload');
 
 /**
- * Renders LaTeX template and stores it based on the passed configuration
+ * Renders LaTeX template and stores it based on the passed configuratio.n
  * @param  {MserviceRequest} data - Incoming request.
  * @param  {Object} data.params - Input payload for the request.
- * @param  {String} data.params.template - Name of a template to render
- * @param  {Object} data.params.context - Context
- * @param  {Object} data.params.meta - Document metadata. https://github.com/makeomatic/ms-files/blob/master/schemas/common.json#L190
- * @returns {Promise<*>} data with file location.
+ * @param  {string} data.params.template - Name of a template to render.
+ * @param  {Object} data.params.context - Context.
+ * @param  {(Object|boolean)} data.params.meta - Document configuration for @microfleet/files.
+ * @returns {Promise<*>} Data with file location.
  */
 module.exports = async function render({ params }) {
   const template = this.config.pdfPrinter.getTemplate(params.template);

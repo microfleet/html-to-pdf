@@ -38,20 +38,17 @@ exports.validator = {
 };
 
 exports.pdfPrinter = {
-  $filter: 'env',
-  $default: {
-    templates: path.resolve(__dirname, '../../__tests__/fixtures/templates'),
-    retryOptions: {
-      interval: 1000,
-      timeout: 30000,
-      max_tries: 5,
-      backoff: 1,
-      disabled: false,
-    },
+  templates: {
+    $filter: 'env',
+    $default: path.resolve(__dirname, '../../__tests__/fixtures/templates'),
+    production: '/src/templates',
   },
-  production: {
-    // valid configuration for docker
-    templates: '/src/templates',
+  retryOptions: {
+    interval: 1000,
+    timeout: 30000,
+    max_tries: 5,
+    backoff: 1.2,
+    disabled: false,
   },
 };
 

@@ -1,28 +1,54 @@
 {
   "$id": "config",
+  "description": "html-to-pdf service configuration",
+  "type": "object",
+  "required": ["pdfPrinter"],
   "properties": {
     "pdfPrinter": {
-      "templates": {
-        "type": "string",
-        "minLength": 1
-      },
-      "retryOptions": {
-        "type": "object",
-        "properties": {
-          "interval": {
-            "type": "number"
-          },
-          "timeout": {
-            "type": "number"
-          },
-          "max_tries": {
-            "type": "number"
-          },
-          "backoff": {
-            "type": "number"
-          },
-          "disable": {
-            "type": "boolean"
+      "description": "options for configuring PDF rendering endpoints",
+      "type": "object",
+      "required": ["templates", "retryOptions"],
+      "properties": {
+        "templates": {
+          "type": "string",
+          "minLength": 1,
+          "description": "directory where templates reside"
+        },
+        "retryOptions": {
+          "type": "object",
+          "description": "retry options in case parts of services fail, more - https://github.com/demmer/bluebird-retry",
+          "properties": {
+            "interval": {
+              "type": "number",
+              "description": "initial wait time between attempts in milliseconds",
+              "default": 1000,
+              "minimum": 0
+            },
+            "timeout": {
+              "type": "number",
+              "description": "total time to wait for the operation to succeed in milliseconds",
+              "default": 30000
+            },
+            "max_tries": {
+              "type": "number",
+              "description": "maximum number of attempts to try the operation",
+              "default": 5,
+              "minimum": 1
+            },
+            "max_interval": {
+              "type": "number",
+              "description": "if specified, maximum amount that interval can increase to"
+            },
+            "backoff": {
+              "type": "number",
+              "minimum": 1,
+              "description": "increase interval by this factor between attempts"
+            },
+            "disable": {
+              "type": "boolean",
+              "default": false,
+              "description": "disable retry alltogether"
+            }
           }
         }
       }

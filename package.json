@@ -8,6 +8,7 @@
   "license": "MIT",
   "scripts": {
     "lint": "eslint ./src",
+    "start": "./bin/mfleet",
     "compile": "babel -d ./lib --copy-files ./src",
     "test": "npm run lint && npm run test:integration",
     "test:integration": "mdep test run --no-nycCoverage --tests \"__tests__/**/*.spec.js\" --test_framework \"jest --coverageDirectory <coverageDirectory>\" --docker_compose __tests__/docker-compose.yml --fail 'docker logs ms-files'",
@@ -16,13 +17,13 @@
     "release": "yarn; npm run semantic-release; npm run docker-release"
   },
   "dependencies": {
-    "@microfleet/core": "^9.1.0",
+    "@microfleet/core": "^9.3.0",
     "@microfleet/transport-amqp": "^10.1.0",
     "bluebird": "^3.5.0",
     "bluebird-retry": "^0.11.0",
     "bunyan": "^1.8.10",
     "chrome-launcher": "^0.3.1",
-    "chrome-remote-interface": "^0.24.1",
+    "chrome-remote-interface": "^0.24.2",
     "common-errors": "^1.0.2",
     "debug": "^2.6.8",
     "ms-validation": "^5.0.1",
