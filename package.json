@@ -8,7 +8,7 @@
   "license": "MIT",
   "scripts": {
     "lint": "eslint ./src",
-    "start": "./bin/mfleet",
+    "start": "mfleet",
     "compile": "babel -d ./lib --copy-files ./src",
     "test": "npm run lint && npm run test:integration",
     "test:integration": "mdep test run",
