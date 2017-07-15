@@ -66,5 +66,8 @@
       "/configs/"
     ],
     "collectCoverage": true
+  },
+  "release": {
+    "verifyConditions": []
   }
 }
