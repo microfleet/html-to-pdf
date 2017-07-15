@@ -3,7 +3,7 @@
   "version": "0.0.0-development",
   "description": "Generates PDF files based on the HTML inputs and arbitrary data. Can be handy to create statements. Features integration with @microfleet/files for distributed storage and access control to such files",
   "main": "./lib/index.js",
-  "repository": "https://github.com/@microfleet/html-to-pdf.git",
+  "repository": "https://github.com/microfleet/html-to-pdf.git",
   "author": "Vitaly Aminev <v@makeomatic.ca>",
   "license": "MIT",
   "scripts": {
