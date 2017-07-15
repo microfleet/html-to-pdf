@@ -14,6 +14,9 @@ services:
     image: makeomatic/ms-files:8.1.3-9.5.0
     container_name: ms-files
     hostname: ms-files
+    depends_on:
+      - redis
+      - rabbitmq
     volumes:
       - ./configs:/configs:ro
       - ./.env:/src/.env:ro
