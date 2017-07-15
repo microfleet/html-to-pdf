@@ -12,7 +12,7 @@
     "compile": "babel -d ./lib --copy-files ./src",
     "test": "npm run lint && npm run test:integration",
     "test:integration": "mdep test run --no-nycCoverage --tests \"__tests__/**/*.spec.js\" --test_framework \"jest --coverageDirectory <coverageDirectory>\" --docker_compose __tests__/docker-compose.yml --fail 'docker logs ms-files'",
-    "semantic-release": "semantic-release pre && npm run compile && npm publish && semantic-release post",
+    "semantic-release": "semantic-release pre && npm run compile && npm publish --access=public && semantic-release post",
     "docker-release": "mdep docker release --node 8.1.4",
     "release": "yarn; npm run semantic-release; npm run docker-release"
   },
