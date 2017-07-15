@@ -1,0 +1,10 @@
+{
+  "node": "8.1.4",
+  "repo": "microfleet",
+  "p": "html-to-pdf",
+  "nycCoverage": false,
+  "tests": "__tests__/**/*.spec.js",
+  "test_framework": "jest --coverageDirectory <coverageDirectory>",
+  "docker_compose": "__tests__/docker-compose.yml",
+  "fail": "docker logs ms-files"
+}

@@ -2,14 +2,15 @@
 # yarn lockfile v1
 
 
-"@makeomatic/deploy@^1.11.0":
-  version "1.11.0"
-  resolved "https://registry.yarnpkg.com/@makeomatic/deploy/-/deploy-1.11.0.tgz#c4da460a98c736d3252016301334e17159b4fd32"
+"@makeomatic/deploy@^1.12.1":
+  version "1.12.1"
+  resolved "https://registry.yarnpkg.com/@makeomatic/deploy/-/deploy-1.12.1.tgz#a359a190b05018a92646cdb47c5384c61081e914"
   dependencies:
     bluebird "^3.5.0"
-    chrome-launcher "^0.3.0"
-    chrome-remote-interface "^0.23.3"
+    chrome-launcher "^0.3.1"
+    chrome-remote-interface "^0.24.2"
     death "^1.1.0"
+    find-up "^2.1.0"
     glob "^7.1.2"
     is "^3.2.1"
     lighthouse-logger "^1.0.0"
@@ -868,7 +869,7 @@ chownr@~1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/chownr/-/chownr-1.0.1.tgz#e2a75042a9551908bebd25b8523d5f9769d79181"
 
-chrome-launcher@^0.3.0, chrome-launcher@^0.3.1:
+chrome-launcher@^0.3.1:
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/chrome-launcher/-/chrome-launcher-0.3.1.tgz#0e9a2904a6f549ba135d20554189028eddd0a22d"
   dependencies:
@@ -878,13 +879,6 @@ chrome-launcher@^0.3.0, chrome-launcher@^0.3.1:
     lighthouse-logger "^1.0.0"
     mkdirp "0.5.1"
     rimraf "^2.6.1"
-
-chrome-remote-interface@^0.23.3:
-  version "0.23.3"
-  resolved "https://registry.yarnpkg.com/chrome-remote-interface/-/chrome-remote-interface-0.23.3.tgz#686fcb3f9c1e1abd88ce69b6bb7bc9f6afd85562"
-  dependencies:
-    commander "2.1.x"
-    ws "2.0.x"
 
 chrome-remote-interface@^0.24.2:
   version "0.24.2"
