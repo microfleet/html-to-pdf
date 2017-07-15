@@ -1,13 +1,15 @@
 const Mservice = require('@microfleet/core');
 const merge = require('lodash/merge');
 
+const Mustache = require('./utils/mustache');
+const Chrome = require('./utils/chrome');
+
 /**
- * @class Mailer
+ * @class PdfPrinter
  * @param {Object} opts - any overrides
  * @returns {Mailer}
  */
-module.exports = class LaTeX extends Mservice {
-
+module.exports = class PdfPrinter extends Mservice {
   /**
    * Default options that are merged into core
    * @type {Object}
@@ -20,9 +22,16 @@ module.exports = class LaTeX extends Mservice {
    * @return {Mailer}
    */
   constructor(opts = {}) {
-    super(merge({}, LaTeX.defaultOpts, opts));
+    super(merge({}, PdfPrinter.defaultOpts, opts));
 
     // initializes mustache to latex streams
-    require('./utils/mustacheToLatex')(this.config);
+    Mustache(this.config);
+
+    // define chrome config
+    const chrome = this.chrome = new Chrome(this.config.chrome);
+
+    // add connectors & disconnectors
+    this.addConnector(Mservice.ConnectorsTypes.essential, chrome.init.bind(chrome));
+    this.addDestructor(Mservice.ConnectorsTypes.essential, chrome.kill.bind(chrome));
   }
 };

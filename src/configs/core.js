@@ -4,7 +4,7 @@ const path = require('path');
  * Default name of the service
  * @type {String}
  */
-exports.name = 'ms-latex';
+exports.name = 'ms-printer';
 
 /**
  * Enables plugins. This is a minimum list
@@ -37,16 +37,19 @@ exports.validator = {
   },
 };
 
-/**
- * Location of LaTeX files
- */
-exports.latex = {
-  $filter: 'env',
-  $default: {
-    templates: path.resolve(__dirname, '../../__tests__/fixtures/latex'),
+exports.pdfPrinter = {
+  templates: {
+    $filter: 'env',
+    $default: path.resolve(__dirname, '../../__tests__/fixtures/templates'),
+    production: '/src/templates',
   },
-  production: {
-    // valid configuration for docker
-    templates: '/src/templates',
+  retryOptions: {
+    interval: 1000,
+    timeout: 30000,
+    max_tries: 5,
+    backoff: 1.2,
+    disabled: false,
   },
 };
+
+exports.chrome = {};

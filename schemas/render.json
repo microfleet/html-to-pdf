@@ -1,22 +1,29 @@
 {
   "$id": "render",
-  "required": ["tex", "input"],
+  "required": ["template", "context", "meta"],
+  "additionalProperties": false,
   "properties": {
-    "tex": {
+    "template": {
       "type": "string",
-      "description": "LaTeX template name"
+      "description": "template name"
     },
-    "input": {
+    "context": {
       "type": "object",
-      "description": "name of the input generator to be used for data fetching"
+      "description": "input params for generating files"
     },
-    "data": {
-      "description": "input params for generating files",
+    "documentOptions": {
+      "description": "document format options - https://chromedevtools.github.io/devtools-protocol/tot/Page/#method-printToPDF",
       "type": "object"
     },
     "meta": {
-      "type": "object",
-      "description": "meta would be passed to @microfleet/files service for storage settings"
+      "anyOf": [{
+        "type": "object",
+        "description": "meta would be passed to @microfleet/files service for storage settings"
+      }, {
+        "type": "boolean",
+        "const": false,
+        "description": "if set to false, then contents of rendered PDF will be passed in base64 back"
+      }]
     }
   }
 }
