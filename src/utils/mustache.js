@@ -1,6 +1,5 @@
 const glob = require('glob');
 const fs = require('fs');
-const assert = require('assert');
 const mustache = require('mustache');
 
 const { ValidationError } = require('common-errors');
@@ -25,10 +24,16 @@ module.exports = function initMustache(config) {
       return acc;
     }, _templates);
 
-  pdfPrinter.getTemplate = (name) => {
-    const template = _templates[name];
-    // ensure that template is defined
-    assert.ifError(template ? undefined : TemplateMissing);
-    return template;
-  };
+  Object.defineProperty(pdfPrinter, 'getTemplate', {
+    enumerable: false,
+    value(name) {
+      const template = _templates[name];
+
+      if (template === undefined) {
+        throw TemplateMissing;
+      }
+
+      return template;
+    },
+  });
 };

@@ -1,4 +1,3 @@
-const Promise = require('bluebird');
 const mustache = require('mustache');
 const upload = require('../utils/upload');
 
@@ -11,23 +10,19 @@ const upload = require('../utils/upload');
  * @param  {(Object|boolean)} data.params.meta - Document configuration for @microfleet/files.
  * @returns {Promise<*>} Data with file location.
  */
-module.exports = async function render({ params }) {
+module.exports = function render({ params }) {
   const template = this.config.pdfPrinter.getTemplate(params.template);
 
   // render template to html
   const html = mustache.render(template, params.context);
+  const meta = params.meta;
 
-  // print out pdf
-  const pdf = await this.chrome.printToPdf(html, params.documentOptions);
-
-  // just return base64 data back
-  if (params.meta === false) {
-    return pdf;
-  }
-
-  // upload
-  return Promise
-    .bind(this, [params.meta, pdf])
-    .spread(upload)
-    .get('uploadId');
+  // print pdf
+  return this.chrome
+    .printToPdf(html, params.documentOptions)
+    .then(pdf => (
+      meta === false
+        ? pdf
+        : upload.call(this, meta, pdf).get('uploadId')
+    ));
 };

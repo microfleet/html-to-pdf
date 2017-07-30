@@ -11,7 +11,7 @@ services:
     hostname: rabbitmq
 
   ms-files:
-    image: makeomatic/ms-files:8.1.3-9.5.0
+    image: makeomatic/ms-files:8.2.1-10.1.1
     container_name: ms-files
     hostname: ms-files
     depends_on:
@@ -26,7 +26,7 @@ services:
 
   tester:
     container_name: tester
-    image: makeomatic/node:8.1.4-chrome-tester
+    image: makeomatic/node:8.2.1-chrome-tester
     links:
       - redis
       - rabbitmq
@@ -39,5 +39,5 @@ services:
       NODE_ENV: "test"
       DEBUG: ${DEBUG}
       DOTENV_FILE_PATH: "/src/__tests__/.env"
-      LIGHTHOUSE_CHROMIUM_PATH: /usr/bin/chromium-browser
+      CHROME_PATH: /usr/bin/chromium-browser
     command: tail -f /dev/null
