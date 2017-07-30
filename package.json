@@ -39,7 +39,7 @@
     "stdout-stream": "^1.4.0"
   },
   "devDependencies": {
-    "@makeomatic/deploy": "^4.1.0",
+    "@makeomatic/deploy": "^4.1.2",
     "babel-cli": "^6.24.1",
     "babel-eslint": "^7.2.3",
     "babel-plugin-transform-class-properties": "^6.24.1",
