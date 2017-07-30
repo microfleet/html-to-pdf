@@ -1,3 +1,4 @@
+const Promise = require('bluebird');
 const mustache = require('mustache');
 const upload = require('../utils/upload');
 
@@ -17,9 +18,8 @@ module.exports = function render({ params }) {
   const html = mustache.render(template, params.context);
   const meta = params.meta;
 
-  // print pdf
-  return this.chrome
-    .printToPdf(html, params.documentOptions)
+  return Promise
+    .resolve(this.chrome.printToPdf(html, params.documentOptions))
     .then(pdf => (
       meta === false
         ? pdf

@@ -39,7 +39,7 @@
     "stdout-stream": "^1.4.0"
   },
   "devDependencies": {
-    "@makeomatic/deploy": "^3.0.3",
+    "@makeomatic/deploy": "^4.1.0",
     "babel-cli": "^6.24.1",
     "babel-eslint": "^7.2.3",
     "babel-plugin-transform-class-properties": "^6.24.1",
@@ -72,7 +72,8 @@
     "verifyConditions": "@makeomatic/condition-semaphore",
     "analyzeCommits": "simple-commit-message",
     "generateNotes": "github-post-release",
-    "branch": "master"
+    "branch": "master",
+    "getLastRelease": "@makeomatic/last-release-npm"
   },
   "config": {
     "pre-git": {
