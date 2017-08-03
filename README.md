@@ -7,6 +7,9 @@ HTML to PDF @microfleet service is designed to render any provided mustache temp
 * Consult with [@microfleet/core](https://github.com/microfleet/core) for generic configuration
 * [configuration schema](schemas/config.json) - service configuration options
 
+By default delayed-retry on Quality of Service is enabled, which effectively retries actions when
+unexpected errors occur up to 5 times by default with exponential delay.
+
 ## API
 
 Description of available API methods
