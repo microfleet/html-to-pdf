@@ -12,6 +12,7 @@ exports.amqp = {
   transport: {
     queue: 'ms-html-to-pdf',
     neck: 10,
+    bindPersistantQueueToHeadersExchange: true,
     connection: {
       host: 'rabbitmq',
     },
