@@ -1,4 +1,9 @@
-const { ValidationError, HttpStatusError } = require('common-errors');
+const {
+  ValidationError,
+  HttpStatusError,
+  NotFoundError,
+  ArgumentError,
+} = require('common-errors');
 
 // quick way to check if action is adhoc
 const renderAction = /\.render$/;
@@ -29,10 +34,13 @@ exports.amqp = {
       switch (err.constructor) {
         case ValidationError:
         case HttpStatusError:
+        case NotFoundError:
+        case ArgumentError:
           return true;
 
         default:
-          return isRenderAction(actionName);
+          // retry unless it's validation & http status error
+          return isRenderAction(actionName) === false;
       }
     },
   },

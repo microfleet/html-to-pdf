@@ -22,6 +22,7 @@ exports.plugins = [
  * @type {Boolean}
  */
 exports.logger = {
+  name: '@microfleet/html-to-pdf',
   defaultLogger: true,
   debug: process.env.NODE_ENV !== 'production',
 };
