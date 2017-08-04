@@ -24,8 +24,14 @@ module.exports = class PdfPrinter extends Mservice {
   constructor(opts = {}) {
     super(merge({}, PdfPrinter.defaultOpts, opts));
 
+    // config
+    const config = this.config;
+
     // initializes mustache to latex streams
-    Mustache(this.config);
+    Mustache(config);
+
+    // propagate logger to chrome
+    if (this._log) config.chrome.logger = this._log.child({ component: 'chrome' });
 
     // define chrome config
     const chrome = this.chrome = new Chrome(this.config.chrome);

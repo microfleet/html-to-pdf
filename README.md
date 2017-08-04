@@ -1,5 +1,7 @@
 # @microfleet/html-to-pdf
 
+<img alt="Microfleet PDF" src="https://raw.githubusercontent.com/microfleet/html-to-pdf/master/assets/mf-concept-pdf.png" width="412" height="208" />
+
 HTML to PDF @microfleet service is designed to render any provided mustache template with arbitrary context and is able to send back base64 encoded PDF or upload id in case of integration with @microfleet/files
 
 ## Configuration

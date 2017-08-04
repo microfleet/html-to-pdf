@@ -1,4 +1,4 @@
-const { Error, ValidationError, HttpStatusError } = require('common-errors');
+const { ValidationError, HttpStatusError } = require('common-errors');
 
 // quick way to check if action is adhoc
 const renderAction = /\.render$/;
@@ -11,7 +11,7 @@ const isRenderAction = actionName => renderAction.test(actionName);
 exports.amqp = {
   transport: {
     queue: 'ms-html-to-pdf',
-    neck: 10,
+    neck: 5,
     bindPersistantQueueToHeadersExchange: true,
     connection: {
       host: 'rabbitmq',
@@ -22,13 +22,12 @@ exports.amqp = {
   },
   retry: {
     enabled: true,
-    min: 500,
-    max: 5000,
-    maxRetries: 5,
+    min: 1000,
+    max: 60000,
+    maxRetries: 10,
     predicate(err, actionName) {
       switch (err.constructor) {
         case ValidationError:
-        case Error:
         case HttpStatusError:
           return true;
 

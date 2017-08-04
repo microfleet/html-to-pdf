@@ -1,4 +1,3 @@
-const Promise = require('bluebird');
 const mustache = require('mustache');
 const upload = require('../utils/upload');
 
@@ -12,14 +11,16 @@ const upload = require('../utils/upload');
  * @returns {Promise<*>} Data with file location.
  */
 module.exports = function render({ params }) {
+  this.log.debug({ params }, 'preparing to render template');
+
   const template = this.config.pdfPrinter.getTemplate(params.template);
 
   // render template to html
   const html = mustache.render(template, params.context);
   const meta = params.meta;
 
-  return Promise
-    .resolve(this.chrome.printToPdf(html, params.documentOptions))
+  return this.chrome
+    .printToPdf(html, params.documentOptions)
     .then(pdf => (
       meta === false
         ? pdf
