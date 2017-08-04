@@ -1,4 +1,5 @@
 const Promise = require('bluebird');
+const noop = require('lodash/noop');
 const ChromeRemote = require('chrome-remote-interface');
 const { Launcher } = require('chrome-launcher');
 
@@ -25,7 +26,11 @@ class Chrome {
   }
 
   constructor(opts = {}) {
-    const { logger, ...restOpts } = opts;
+    const {
+      logger,
+      timeout = 10000,
+      ...restOpts
+    } = opts;
 
     // chrome instance
     this.launcher = null;
@@ -44,6 +49,7 @@ class Chrome {
     // use custom logger if provided
     this.log = logger || debug;
     this.onLog = params => this.log.info(params.message.text);
+    this.timeout = timeout;
 
     // Kill spawned Chrome process in case of ctrl-C.
     process.on(_SIGINT, async () => (
@@ -91,20 +97,20 @@ class Chrome {
    * Opens a new Chrome tab
    * @return {Promise<ChromeDebugProtocol>}
    */
-  async openTab() {
-    const target = await ChromeRemote.New(this.launcher);
-    const tab = await ChromeRemote({ target });
-
-    const { Network, Page, Console } = tab;
-
-    Console.messageAdded(this.onLog);
-
+  openTab() {
     return Promise
-      .all([
-        Page.enable(),
-        Network.enable(),
-      ])
-      .return(tab);
+      .bind(ChromeRemote, this.launcher)
+      .then(ChromeRemote.New)
+      .then(target => ChromeRemote({ target }))
+      .tap((tab) => {
+        const { Network, Page, Console } = tab;
+
+        Console.messageAdded(this.onLog);
+
+        return Promise.all([Page.enable(), Network.enable()]);
+      })
+      .timeout(this.timeout)
+      .disposer(tab => tab.close().catch(noop));
   }
 
   /**
@@ -113,22 +119,20 @@ class Chrome {
    * @param {Object} opts page printing options
    * @return {Promise<String>} base64 encoded PDF document
    */
-  async printToPdf(html, opts = {}) {
-    const tab = await this.openTab();
-    try {
-      const { Page } = tab;
+  printToPdf(html, opts = {}) {
+    return Promise.using(this.openTab(), ({ Page }) => {
       const url = /^(https?|file|data):/i.test(html) ? html : `data:text/html,${html}`;
 
-      await Page.navigate({ url });
-      await Page.loadEventFired();
-
-      // https://chromedevtools.github.io/debugger-protocol-viewer/tot/Page/#method-printToPDF
-      const pdf = await Page.printToPDF(opts);
-
-      return pdf.data;
-    } finally {
-      await tab.close();
-    }
+      return Promise
+        .all([
+          Page.loadEventFired(),
+          Page.navigate({ url }),
+        ])
+        .return(Page)
+        .call('printToPDF', opts)
+        .get('data')
+        .timeout(this.timeout);
+    });
   }
 }
 

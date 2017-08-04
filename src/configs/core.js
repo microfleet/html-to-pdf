@@ -52,4 +52,10 @@ exports.pdfPrinter = {
   },
 };
 
-exports.chrome = {};
+exports.chrome = {
+  /**
+   * Chrome Render Timeout.
+   * @type {number}
+   */
+  timeout: 15000,
+};
