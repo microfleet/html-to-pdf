@@ -6,5 +6,8 @@
   "tests": "__tests__/**/*.spec.js",
   "test_framework": "jest --coverageDirectory <coverageDirectory> --forceExit",
   "docker_compose": "__tests__/docker-compose.yml",
-  "fail": "docker logs ms-files"
+  "fail": "docker logs ms-files",
+  "arbitrary_exec": [
+    "yarn"
+  ]
 }
