@@ -18,11 +18,12 @@ class Chrome {
 
     try {
       await launcher.launch();
-      return launcher;
     } catch (e) {
       await launcher.kill();
       throw e;
     }
+
+    return launcher;
   }
 
   constructor(opts = {}) {
@@ -37,13 +38,14 @@ class Chrome {
 
     // settings
     this.settings = Object.assign({
-      logLevel: 'verbose',
+      logLevel: 'info',
       chromeFlags: [
         '--window-size=1024,768',
         '--disable-gpu',
         '--no-sandbox',
         '--headless',
       ],
+      handleSIGINT: false,
     }, restOpts);
 
     // use custom logger if provided
@@ -52,9 +54,9 @@ class Chrome {
     this.timeout = timeout;
 
     // Kill spawned Chrome process in case of ctrl-C.
-    process.on(_SIGINT, async () => (
-      this.kill()
-    ));
+    process.on(_SIGINT, async () => {
+      return this.kill();
+    });
   }
 
   /**
@@ -69,11 +71,12 @@ class Chrome {
 
     try {
       this.launcher = await Chrome.launch(this.settings);
-      return this;
     } catch (e) {
       this.launcher = null;
       throw e;
     }
+
+    return this;
   }
 
   /**
@@ -81,16 +84,13 @@ class Chrome {
    * @returns {Promise<null>}
    */
   async kill() {
-    try {
-      // kill chrome instance if has been launched
-      if (this.launcher) {
-        await this.launcher.kill();
-      }
-      this.launcher = null;
-      return null;
-    } catch (e) {
-      throw e;
+    // kill chrome instance if has been launched
+    if (this.launcher) {
+      await this.launcher.kill();
     }
+
+    this.launcher = null;
+    return null;
   }
 
   /**
@@ -101,7 +101,7 @@ class Chrome {
     return Promise
       .bind(ChromeRemote, this.launcher)
       .then(ChromeRemote.New)
-      .then(target => ChromeRemote({ target }))
+      .then(target => ChromeRemote({ target, port: this.launcher.port }))
       .tap((tab) => {
         const { Network, Page, Console } = tab;
 
