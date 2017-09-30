@@ -8,6 +8,6 @@
   "docker_compose": "__tests__/docker-compose.yml",
   "fail": "docker logs ms-files",
   "arbitrary_exec": [
-    "yarn"
+    "rm -rf node_modules; yarn"
   ]
 }
