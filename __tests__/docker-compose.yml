@@ -11,7 +11,7 @@ services:
     hostname: rabbitmq
 
   ms-files:
-    image: makeomatic/ms-files:8.6.0-10.5.2
+    image: makeomatic/ms-files:8.6.0-10.5.3
     container_name: ms-files
     hostname: ms-files
     depends_on:
