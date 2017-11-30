@@ -54,9 +54,7 @@ class Chrome {
     this.timeout = timeout;
 
     // Kill spawned Chrome process in case of ctrl-C.
-    process.on(_SIGINT, async () => {
-      return this.kill();
-    });
+    process.on(_SIGINT, async () => this.kill());
   }
 
   /**

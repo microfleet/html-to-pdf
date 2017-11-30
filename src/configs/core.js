@@ -58,5 +58,5 @@ exports.chrome = {
    * Chrome Render Timeout.
    * @type {number}
    */
-  timeout: 15000,
+  timeout: 2000,
 };
