@@ -12,15 +12,14 @@ const upload = require('../utils/upload');
  */
 module.exports = function render({ params }) {
   this.log.debug({ params }, 'preparing to render template');
-
+  const { meta, context, documentOptions } = params;
   const template = this.config.pdfPrinter.getTemplate(params.template);
 
   // render template to html
-  const html = mustache.render(template, params.context);
-  const meta = params.meta;
+  const html = mustache.render(template, context);
 
   return this.chrome
-    .printToPdf(html, params.documentOptions)
+    .printToPdf(html, documentOptions)
     .then(pdf => (
       meta === false
         ? pdf

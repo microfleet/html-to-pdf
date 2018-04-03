@@ -1,5 +1,5 @@
 {
-  "node": "9.2.0",
+  "node": "9.10.0",
   "repo": "microfleet",
   "p": "html-to-pdf",
   "nycCoverage": false,
@@ -8,6 +8,6 @@
   "docker_compose": "__tests__/docker-compose.yml",
   "fail": "docker logs ms-files",
   "arbitrary_exec": [
-    "rm -rf node_modules; yarn"
+    "rm -rf node_modules; yarn --frozen-lockfile"
   ]
 }

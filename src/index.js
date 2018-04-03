@@ -25,7 +25,7 @@ module.exports = class PdfPrinter extends Mservice {
     super(merge({}, PdfPrinter.defaultOpts, opts));
 
     // config
-    const config = this.config;
+    const { config } = this;
 
     // initializes mustache to latex streams
     Mustache(config);

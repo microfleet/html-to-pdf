@@ -10,38 +10,39 @@
     "lint": "eslint ./src",
     "start": "mfleet",
     "compile": "babel -d ./lib --copy-files ./src",
-    "test": "npm run lint && npm run test:integration",
+    "test": "yarn lint && yarn test:integration",
     "test:integration": "mdep test run",
-    "prepublishOnly": "npm run compile",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
+    "prepublishOnly": "yarn compile",
+    "semantic-release": "semantic-release",
     "docker-release": "mdep docker release",
-    "release": "yarn && npm run semantic-release && npm run docker-release",
-    "commit": "simple-commit-message"
+    "release": "yarn && yarn semantic-release",
+    "commitmsg": "commitlint -e $GIT_PARAMS",
+    "preparecommitmsg": "./node_modules/@makeomatic/deploy/git-hooks/prepare-commit-msg $GIT_PARAMS"
   },
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
-    "@microfleet/core": "^9.7.5",
-    "@microfleet/transport-amqp": "^12.3.1",
+    "@microfleet/core": "^10.2.4",
+    "@microfleet/transport-amqp": "^13.0.1",
     "bluebird": "^3.5.1",
     "bluebird-retry": "^0.11.0",
     "bunyan": "^1.8.12",
-    "chrome-launcher": "^0.9.0",
-    "chrome-remote-interface": "^0.25.4",
+    "chrome-launcher": "^0.10.2",
+    "chrome-remote-interface": "^0.25.5",
     "common-errors": "^1.0.5",
     "debug": "^3.1.0",
     "ms-conf": "^3.2.0",
-    "ms-validation": "^6.0.2",
+    "ms-validation": "^7.0.0",
     "mustache": "^2.3.0",
-    "request": "^2.83.0",
+    "request": "^2.85.0",
     "request-promise": "^4.2.2",
     "stdout-stream": "^1.4.0"
   },
   "devDependencies": {
-    "@makeomatic/deploy": "^4.1.8",
+    "@makeomatic/deploy": "^6.0.2",
     "babel-cli": "^6.26.0",
-    "babel-eslint": "^8.0.2",
+    "babel-eslint": "^8.2.2",
     "babel-plugin-istanbul": "^4.1.5",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
@@ -49,17 +50,14 @@
     "babel-register": "^6.26.0",
     "cheerio": "^1.0.0-rc.2",
     "codecov": "^3.0.0",
-    "cross-env": "^5.1.1",
-    "eslint": "^4.12.0",
-    "eslint-config-makeomatic": "^1.1.0",
-    "eslint-plugin-import": "^2.8.0",
-    "eslint-plugin-promise": "^3.6.0",
-    "jest": "^21.2.1",
+    "cross-env": "^5.1.4",
+    "eslint": "^4.19.1",
+    "eslint-config-makeomatic": "^2.0.1",
+    "eslint-plugin-import": "^2.10.0",
+    "eslint-plugin-promise": "^3.7.0",
+    "jest": "^22.4.3",
     "json": "^9.0.6",
-    "latest-version-cli": "^1.1.0",
-    "rimraf": "^2.6.2",
-    "semantic-release": "^8.2.0",
-    "semantic-release-cli": "^3.2.6"
+    "rimraf": "^2.6.2"
   },
   "jest": {
     "testPathIgnorePatterns": [
@@ -69,22 +67,5 @@
     ],
     "collectCoverage": true,
     "testEnvironment": "node"
-  },
-  "release": {
-    "verifyConditions": "@makeomatic/condition-semaphore",
-    "analyzeCommits": "simple-commit-message",
-    "generateNotes": "github-post-release",
-    "branch": "master",
-    "getLastRelease": "@makeomatic/last-release-npm"
-  },
-  "config": {
-    "pre-git": {
-      "commit-msg": "simple",
-      "pre-commit": [],
-      "pre-push": [],
-      "post-commit": [],
-      "post-checkout": [],
-      "post-merge": []
-    }
   }
 }

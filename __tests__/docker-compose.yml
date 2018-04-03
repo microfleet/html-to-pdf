@@ -11,7 +11,7 @@ services:
     hostname: rabbitmq
 
   ms-files:
-    image: makeomatic/ms-files:9.2.0-10.6.1
+    image: makeomatic/ms-files:9.10.0-11.1.1
     container_name: ms-files
     hostname: ms-files
     depends_on:
@@ -26,7 +26,7 @@ services:
 
   tester:
     container_name: tester
-    image: makeomatic/node:9.2.0-chrome-tester
+    image: makeomatic/node:9.10.0-chrome-tester
     links:
       - redis
       - rabbitmq
