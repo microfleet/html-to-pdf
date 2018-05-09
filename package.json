@@ -15,7 +15,7 @@
     "prepublishOnly": "yarn compile",
     "semantic-release": "semantic-release",
     "docker-release": "mdep docker release",
-    "release": "yarn && yarn semantic-release",
+    "release": "yarn --frozen-lockfile && yarn semantic-release",
     "commitmsg": "commitlint -e $GIT_PARAMS",
     "preparecommitmsg": "./node_modules/@makeomatic/deploy/git-hooks/prepare-commit-msg $GIT_PARAMS"
   },
@@ -23,7 +23,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@microfleet/core": "^10.2.4",
+    "@microfleet/core": "^10.3.1",
     "@microfleet/transport-amqp": "^13.0.1",
     "bluebird": "^3.5.1",
     "bluebird-retry": "^0.11.0",
@@ -40,26 +40,33 @@
     "stdout-stream": "^1.4.0"
   },
   "devDependencies": {
-    "@makeomatic/deploy": "^6.0.2",
-    "@semantic-release/exec": "^2.2.3",
+    "@makeomatic/deploy": "^6.1.0",
+    "@semantic-release/changelog": "^2.0.2",
+    "@semantic-release/exec": "^2.2.4",
+    "@semantic-release/git": "^5.0.0",
     "babel-cli": "^6.26.0",
-    "babel-eslint": "^8.2.2",
-    "babel-plugin-istanbul": "^4.1.5",
+    "babel-eslint": "^8.2.3",
+    "babel-plugin-istanbul": "^4.1.6",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-plugin-transform-strict-mode": "^6.24.1",
     "babel-register": "^6.26.0",
     "cheerio": "^1.0.0-rc.2",
-    "codecov": "^3.0.0",
+    "codecov": "^3.0.2",
     "cross-env": "^5.1.4",
     "eslint": "^4.19.1",
     "eslint-config-makeomatic": "^2.0.1",
-    "eslint-plugin-import": "^2.10.0",
+    "eslint-plugin-import": "^2.11.0",
     "eslint-plugin-promise": "^3.7.0",
     "jest": "^22.4.3",
     "json": "^9.0.6",
     "rimraf": "^2.6.2"
   },
+  "files": [
+    "src/",
+    "lib/",
+    "schemas/"
+  ],
   "jest": {
     "testPathIgnorePatterns": [
       "/node_modules/",

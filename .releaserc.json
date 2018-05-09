@@ -1,7 +1,12 @@
 {
   "branch": "master",
-  "publish": [
+  "prepare": [
+    "@semantic-release/changelog",
+    "@semantic-release/npm",
     { "path": "@semantic-release/exec", "cmd": "yarn docker-release" },
+    "@semantic-release/git"
+  ],
+  "publish": [
     "@semantic-release/npm",
     "@semantic-release/github"
   ],
