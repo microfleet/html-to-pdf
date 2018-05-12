@@ -16,7 +16,7 @@ RUN \
     python \
     linux-headers \
   && yarn --production --frozen-lockfile \
-  && apk del .build-deps
+  && apk del .build-deps \
   && rm -rf \
     /tmp/* \
     /root/.node-gyp \
