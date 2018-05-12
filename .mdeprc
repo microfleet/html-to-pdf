@@ -1,13 +1,10 @@
 {
-  "node": "9.11.1",
+  "node": "10.1.0",
   "repo": "microfleet",
   "p": "html-to-pdf",
   "nycCoverage": false,
   "tests": "__tests__/**/*.spec.js",
   "test_framework": "jest --coverageDirectory <coverageDirectory> --forceExit",
   "docker_compose": "__tests__/docker-compose.yml",
-  "fail": "docker logs ms-files",
-  "arbitrary_exec": [
-    "rm -rf node_modules; yarn --frozen-lockfile"
-  ]
+  "rebuild": ["64"]
 }

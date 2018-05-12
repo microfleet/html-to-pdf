@@ -1,6 +1,7 @@
 const Promise = require('bluebird');
 const noop = require('lodash/noop');
 const ChromeRemote = require('chrome-remote-interface');
+const { encode } = require('64');
 const { Launcher } = require('chrome-launcher');
 
 const debug = require('debug')('ms-printer:chrome');
@@ -39,11 +40,13 @@ class Chrome {
     // settings
     this.settings = Object.assign({
       logLevel: 'info',
+      port: 9222,
       chromeFlags: [
         '--window-size=1024,768',
         '--disable-gpu',
         '--no-sandbox',
         '--headless',
+        '--remote-debugging-address=0.0.0.0',
       ],
       handleSIGINT: false,
     }, restOpts);
@@ -119,7 +122,9 @@ class Chrome {
    */
   printToPdf(html, opts = {}) {
     return Promise.using(this.openTab(), ({ Page }) => {
-      const url = /^(https?|file|data):/i.test(html) ? html : `data:text/html,${html}`;
+      const url = /^(https?|file|data):/i.test(html)
+        ? html
+        : `data:text/html;charset=utf-8;base64,${encode(Buffer.from(html))}`;
 
       return Promise
         .all([

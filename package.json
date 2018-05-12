@@ -23,6 +23,7 @@
     "access": "public"
   },
   "dependencies": {
+    "64": "^0.2.0",
     "@microfleet/core": "^10.3.1",
     "@microfleet/transport-amqp": "^13.0.1",
     "bluebird": "^3.5.1",
@@ -40,10 +41,10 @@
     "stdout-stream": "^1.4.0"
   },
   "devDependencies": {
-    "@makeomatic/deploy": "^6.1.0",
+    "@makeomatic/deploy": "^6.1.1",
     "@semantic-release/changelog": "^2.0.2",
     "@semantic-release/exec": "^2.2.4",
-    "@semantic-release/git": "4.x.x",
+    "@semantic-release/git": "5.0.0",
     "babel-cli": "^6.26.0",
     "babel-eslint": "^8.2.3",
     "babel-plugin-istanbul": "^4.1.6",
