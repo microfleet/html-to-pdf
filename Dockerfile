@@ -11,9 +11,9 @@ COPY yarn.lock package.json ./
 RUN \
   apk --update upgrade \
   && apk add --virtual .build-deps \
-    g++
-    make
-    python
+    g++ \
+    make \
+    python \
     linux-headers \
   && yarn --production --frozen-lockfile \
   && apk del .build-deps
