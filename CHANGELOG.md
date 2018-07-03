@@ -1,3 +1,11 @@
+<a name="1.3.3"></a>
+## [1.3.3](https://github.com/microfleet/html-to-pdf/compare/v1.3.2...v1.3.3) (2018-07-03)
+
+
+### Bug Fixes
+
+* node 10.5.0 ([#13](https://github.com/microfleet/html-to-pdf/issues/13)) ([2a964d4](https://github.com/microfleet/html-to-pdf/commit/2a964d4))
+
 <a name="1.3.2"></a>
 ## [1.3.2](https://github.com/microfleet/html-to-pdf/compare/v1.3.1...v1.3.2) (2018-05-12)
 
