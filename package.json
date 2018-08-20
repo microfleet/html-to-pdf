@@ -58,7 +58,7 @@
     "eslint": "^4.19.1",
     "eslint-config-makeomatic": "^2.0.1",
     "eslint-plugin-import": "^2.11.0",
-    "eslint-plugin-promise": "^3.7.0",
+    "eslint-plugin-promise": "^4.0.0",
     "jest": "^23.0.0",
     "json": "^9.0.6",
     "rimraf": "^2.6.2"
