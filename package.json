@@ -32,7 +32,7 @@
     "chrome-launcher": "^0.10.2",
     "chrome-remote-interface": "^0.25.5",
     "common-errors": "^1.0.5",
-    "debug": "^3.1.0",
+    "debug": "^4.0.0",
     "ms-conf": "^3.2.0",
     "ms-validation": "^7.0.0",
     "mustache": "^2.3.0",
