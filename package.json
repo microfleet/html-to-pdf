@@ -35,7 +35,7 @@
     "debug": "^3.1.0",
     "ms-conf": "^3.2.0",
     "ms-validation": "^7.0.0",
-    "mustache": "^2.3.0",
+    "mustache": "^3.0.0",
     "request": "^2.85.0",
     "request-promise": "^4.2.2",
     "stdout-stream": "^1.4.0"

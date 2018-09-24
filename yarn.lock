@@ -3907,9 +3907,9 @@ ms@2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.0.0.tgz#5608aeadfc00be6c2901df5f9861788de0d597c8"
 
-mustache@^2.3.0:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/mustache/-/mustache-2.3.0.tgz#4028f7778b17708a489930a6e52ac3bca0da41d0"
+mustache@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/mustache/-/mustache-3.0.0.tgz#3de22dd9ba38152f7355399a953dd4528c403338"
 
 mute-stream@0.0.7:
   version "0.0.7"
