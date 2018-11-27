@@ -30,7 +30,7 @@
     "bluebird-retry": "^0.11.0",
     "bunyan": "^1.8.12",
     "chrome-launcher": "^0.10.2",
-    "chrome-remote-interface": "^0.25.5",
+    "chrome-remote-interface": "^0.27.0",
     "common-errors": "^1.0.5",
     "debug": "^3.1.0",
     "ms-conf": "^3.2.0",
