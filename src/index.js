@@ -1,4 +1,4 @@
-const Mservice = require('@microfleet/core');
+const { Microfleet, ConnectorsTypes } = require('@microfleet/core');
 const merge = require('lodash/merge');
 
 const Mustache = require('./utils/mustache');
@@ -9,7 +9,7 @@ const Chrome = require('./utils/chrome');
  * @param {Object} opts - any overrides
  * @returns {Mailer}
  */
-module.exports = class PdfPrinter extends Mservice {
+module.exports = class PdfPrinter extends Microfleet {
   /**
    * Default options that are merged into core
    * @type {Object}
@@ -31,13 +31,13 @@ module.exports = class PdfPrinter extends Mservice {
     Mustache(config);
 
     // propagate logger to chrome
-    if (this._log) config.chrome.logger = this._log.child({ component: 'chrome' });
+    config.chrome.logger = this.log.child({ component: 'chrome' });
 
     // define chrome config
     const chrome = this.chrome = new Chrome(this.config.chrome);
 
     // add connectors & disconnectors
-    this.addConnector(Mservice.ConnectorsTypes.essential, chrome.init.bind(chrome));
-    this.addDestructor(Mservice.ConnectorsTypes.essential, chrome.kill.bind(chrome));
+    this.addConnector(ConnectorsTypes.essential, chrome.init.bind(chrome));
+    this.addDestructor(ConnectorsTypes.essential, chrome.kill.bind(chrome));
   }
 };
