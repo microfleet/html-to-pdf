@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/microfleet/html-to-pdf/compare/v1.3.3...v1.4.0) (2018-12-16)
+
+
+### Features
+
+* upgrade deps, node ([fc2e98b](https://github.com/microfleet/html-to-pdf/commit/fc2e98b))
+
 <a name="1.3.3"></a>
 ## [1.3.3](https://github.com/microfleet/html-to-pdf/compare/v1.3.2...v1.3.3) (2018-07-03)
 
