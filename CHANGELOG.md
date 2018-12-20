@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/microfleet/html-to-pdf/compare/v1.4.0...v1.4.1) (2018-12-20)
+
+
+### Bug Fixes
+
+* sentry logging ([8e74bb4](https://github.com/microfleet/html-to-pdf/commit/8e74bb4))
+
 # [1.4.0](https://github.com/microfleet/html-to-pdf/compare/v1.3.3...v1.4.0) (2018-12-16)
 
 
