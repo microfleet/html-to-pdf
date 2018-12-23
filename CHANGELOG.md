@@ -1,3 +1,10 @@
+## [1.4.3](https://github.com/microfleet/html-to-pdf/compare/v1.4.2...v1.4.3) (2018-12-23)
+
+
+### Bug Fixes
+
+* stacktrace printing for errors ([465557e](https://github.com/microfleet/html-to-pdf/commit/465557e))
+
 ## [1.4.2](https://github.com/microfleet/html-to-pdf/compare/v1.4.1...v1.4.2) (2018-12-23)
 
 
