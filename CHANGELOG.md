@@ -1,3 +1,10 @@
+## [1.4.4](https://github.com/microfleet/html-to-pdf/compare/v1.4.3...v1.4.4) (2018-12-24)
+
+
+### Bug Fixes
+
+* chromium 71 issues ([c27d78c](https://github.com/microfleet/html-to-pdf/commit/c27d78c))
+
 ## [1.4.3](https://github.com/microfleet/html-to-pdf/compare/v1.4.2...v1.4.3) (2018-12-23)
 
 
