@@ -7,6 +7,7 @@ module.exports = {
     },
   },
   transport: [{
+    name: 'gce',
     options: {
       gce: {
         projectId: env.GCLOUD_PROJECT_ID,
