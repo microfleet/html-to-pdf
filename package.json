@@ -48,7 +48,7 @@
     "@makeomatic/deploy": "^8.3.0",
     "@semantic-release/changelog": "^3.0.1",
     "@semantic-release/exec": "^3.3.1",
-    "@semantic-release/git": "7.0.6",
+    "@semantic-release/git": "7.0.7",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^23.4.2",
