@@ -51,7 +51,7 @@
     "@semantic-release/git": "7.0.8",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
-    "babel-jest": "^23.4.2",
+    "babel-jest": "^24.0.0",
     "babel-plugin-istanbul": "^5.1.0",
     "cheerio": "^1.0.0-rc.2",
     "codecov": "^3.1.0",
@@ -60,7 +60,7 @@
     "eslint-config-makeomatic": "^3.0.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-promise": "^4.0.1",
-    "jest": "^23.6.0",
+    "jest": "^24.0.0",
     "json": "^9.0.6",
     "rimraf": "^2.6.2"
   },
