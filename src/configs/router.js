@@ -26,6 +26,6 @@ exports.router = {
   },
   extensions: {
     enabled: ['postRequest', 'preRequest', 'preResponse'],
-    register: [autoSchema, auditLog],
+    register: [autoSchema, auditLog()],
   },
 };

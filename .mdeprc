@@ -1,10 +1,10 @@
 {
-  "node": "10.14.2",
+  "node": "10.15.1",
   "repo": "microfleet",
   "p": "html-to-pdf",
   "nycCoverage": false,
   "tests": "__tests__/**/*.spec.js",
-  "test_framework": "jest --coverageDirectory <coverageDirectory> --forceExit",
+  "test_framework": "jest --coverageDirectory <coverageDirectory> --detectOpenHandles --runTestsByPath",
   "docker_compose": "__tests__/docker-compose.yml",
   "rebuild": ["64"]
 }
