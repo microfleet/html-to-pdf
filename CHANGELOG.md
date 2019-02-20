@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/microfleet/html-to-pdf/compare/v1.4.4...v1.5.0) (2019-02-20)
+
+
+### Features
+
+* upgrade node to 10.15.1 & deps ([754781c](https://github.com/microfleet/html-to-pdf/commit/754781c))
+
 ## [1.4.4](https://github.com/microfleet/html-to-pdf/compare/v1.4.3...v1.4.4) (2018-12-24)
 
 
