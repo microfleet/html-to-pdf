@@ -21,8 +21,9 @@ exports.router = {
   routes: {
     directory: path.resolve(__dirname, '../actions'),
     prefix: 'pdf',
-    setTransportsAsDefault: true,
-    transports: [ActionTransport.amqp],
+    setTransportsAsDefault: false,
+    transports: [ActionTransport.amqp, ActionTransport.http],
+    enabledGenericActions: ['health'],
   },
   extensions: {
     enabled: ['postRequest', 'preRequest', 'preResponse'],
