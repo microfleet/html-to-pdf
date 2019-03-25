@@ -32,7 +32,7 @@
     "chrome-remote-interface": "^0.27.0",
     "common-errors": "^1.0.5",
     "debug": "^4.1.0",
-    "ms-conf": "^3.3.3",
+    "ms-conf": "^4.0.0",
     "mustache": "^3.0.1",
     "request": "^2.88.0",
     "request-promise": "^4.2.2",
