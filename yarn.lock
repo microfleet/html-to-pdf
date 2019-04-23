@@ -2278,6 +2278,11 @@ dotenv@^6.2.0:
   resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-6.2.0.tgz#941c0410535d942c8becf28d3f357dbd9d476064"
   integrity sha512-HygQCKUBSFl8wKQZBSemMywRWcEDNidvNbjGVyZu3nbZ8qq9ubiPoGLMdRDpfSrpkkm9BXYFkpKxxFX38o/76w==
 
+dotenv@^7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-7.0.0.tgz#a2be3cd52736673206e8a85fb5210eea29628e7c"
+  integrity sha512-M3NhsLbV1i6HuGzBUH8vXrtxOk+tWmzWKDMbAVSUp3Zsjm7ywFeuwrUXhmhQyRK1q5B5GGy7hcXPbj3bnfZg2g==
+
 dtrace-provider@~0.8:
   version "0.8.7"
   resolved "https://registry.yarnpkg.com/dtrace-provider/-/dtrace-provider-0.8.7.tgz#dc939b4d3e0620cfe0c1cd803d0d2d7ed04ffd04"
@@ -5148,7 +5153,7 @@ move-concurrently@^1.0.1:
     rimraf "^2.5.4"
     run-queue "^1.0.3"
 
-ms-conf@^3.3.1, ms-conf@^3.3.3:
+ms-conf@^3.3.1:
   version "3.3.3"
   resolved "https://registry.yarnpkg.com/ms-conf/-/ms-conf-3.3.3.tgz#25af848050bcf04456c807cd4c74785c78a62a11"
   integrity sha512-a8/gF2+W7ylkef0QPjT6pASPffO872zUsdz1RQ9auCYOzPr5O4k/b//2m3fVGK1Jo/f9FgIDpFFqDFUM0eu2XQ==
@@ -5157,6 +5162,22 @@ ms-conf@^3.3.1, ms-conf@^3.3.3:
     confidence "^4.0.1"
     debug "^4.1.0"
     dotenv "^6.2.0"
+    eventemitter3 "^3.1.0"
+    glob "^7.1.3"
+    lodash.mergewith "^4.6.1"
+    lodash.reduce "^4.6.0"
+    lodash.uniq "^4.5.0"
+    nconf "^0.10.0"
+
+ms-conf@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/ms-conf/-/ms-conf-5.0.0.tgz#c57d2911c4e7ee155725ec1ab7992a1e533596b0"
+  integrity sha512-r+8F2ud7uY6hiLt0MjA8y3ZJwQPMEmnEIR8qtaRdB+TjU3cKqqkaUkQ9JrE6Og71cdizm2M8m3Ahe4+gPFbKBA==
+  dependencies:
+    camelcase "^5.0.0"
+    confidence "^4.0.1"
+    debug "^4.1.0"
+    dotenv "^7.0.0"
     eventemitter3 "^3.1.0"
     glob "^7.1.3"
     lodash.mergewith "^4.6.1"
