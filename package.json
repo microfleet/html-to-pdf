@@ -32,8 +32,10 @@
     "chrome-remote-interface": "^0.27.0",
     "common-errors": "^1.0.5",
     "debug": "^4.1.0",
+    "hapi": "^18.1.0",
     "ms-conf": "^3.3.3",
     "mustache": "^3.0.1",
+    "prom-client": "^11.2.1",
     "request": "^2.88.0",
     "request-promise": "^4.2.2",
     "stdout-stream": "^1.4.1"

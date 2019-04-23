@@ -1,4 +1,5 @@
 const mustache = require('mustache');
+const { ActionTransport } = require('@microfleet/core');
 const upload = require('../utils/upload');
 
 /**
@@ -10,7 +11,7 @@ const upload = require('../utils/upload');
  * @param  {(Object|boolean)} data.params.meta - Document configuration for @microfleet/files.
  * @returns {Promise<*>} Data with file location.
  */
-module.exports = function render({ params }) {
+function render({ params }) {
   this.log.debug({ params }, 'preparing to render template');
   const { meta, context, documentOptions } = params;
   const template = this.config.pdfPrinter.getTemplate(params.template);
@@ -25,4 +26,7 @@ module.exports = function render({ params }) {
         ? pdf
         : upload.call(this, meta, pdf).get('uploadId')
     ));
-};
+}
+
+module.exports = render;
+render.transports = [ActionTransport.amqp];
