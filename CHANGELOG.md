@@ -1,3 +1,10 @@
+## [1.5.1](https://github.com/microfleet/html-to-pdf/compare/v1.5.0...v1.5.1) (2019-04-23)
+
+
+### Bug Fixes
+
+* trigger CI build ([587f9dc](https://github.com/microfleet/html-to-pdf/commit/587f9dc))
+
 # [1.5.0](https://github.com/microfleet/html-to-pdf/compare/v1.4.4...v1.5.0) (2019-02-20)
 
 
