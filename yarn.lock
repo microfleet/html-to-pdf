@@ -1571,6 +1571,17 @@ chrome-launcher@^0.10.5:
     mkdirp "0.5.1"
     rimraf "^2.6.1"
 
+chrome-launcher@^0.11.0:
+  version "0.11.1"
+  resolved "https://registry.yarnpkg.com/chrome-launcher/-/chrome-launcher-0.11.1.tgz#ccc5bd971c76cdd263d17acacaeb762454c1af92"
+  integrity sha512-Om9LtiJ+FIh8sfhx8HaN4Petj75dIVeTBNUbXIXPIS5W3y9dyNRGmChcl0Z5trQkcy+8XDJA3NWicYdpZeF+DA==
+  dependencies:
+    "@types/node" "*"
+    is-wsl "^2.1.0"
+    lighthouse-logger "^1.0.0"
+    mkdirp "0.5.1"
+    rimraf "^2.6.1"
+
 chrome-remote-interface@^0.27.0:
   version "0.27.1"
   resolved "https://registry.yarnpkg.com/chrome-remote-interface/-/chrome-remote-interface-0.27.1.tgz#d1f876b5433b87c00a6ce459b4c6ed60d8a36fb8"
@@ -4017,6 +4028,11 @@ is-wsl@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/is-wsl/-/is-wsl-1.1.0.tgz#1f16e4aa22b04d1336b66188a66af3c600c3a66d"
   integrity sha1-HxbkqiKwTRM2tmGIpmrzxgDDpm0=
+
+is-wsl@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/is-wsl/-/is-wsl-2.1.0.tgz#94369bbeb2249ef07b831b1b08590e686330ccbb"
+  integrity sha512-pFTjpv/x5HRj8kbZ/Msxi9VrvtOMRBqaDi3OIcbwPI3OuH+r3lLxVWukLITBaOGJIbA/w2+M1eVmVa4XNQlAmQ==
 
 is@^3.2.1, is@^3.3.0:
   version "3.3.0"
