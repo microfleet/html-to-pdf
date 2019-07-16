@@ -14,6 +14,11 @@ const autoSchema = routerExtension('validate/schemaLessAction');
 const auditLog = routerExtension('audit/log');
 
 /**
+ * Prometheus metrics
+ */
+const metrics = routerExtension('audit/metrics');
+
+/**
  * Specifies configuration for the router of the microservice
  * @type {Object}
  */
@@ -26,7 +31,7 @@ exports.router = {
     enabledGenericActions: ['health'],
   },
   extensions: {
-    enabled: ['postRequest', 'preRequest', 'preResponse'],
-    register: [autoSchema, auditLog()],
+    enabled: ['postRequest', 'preRequest', 'preResponse', 'postResponse'],
+    register: [autoSchema, auditLog(), metrics()],
   },
 };

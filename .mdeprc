@@ -1,5 +1,5 @@
 {
-  "node": "10.15.1",
+  "node": "10.16.0",
   "repo": "microfleet",
   "p": "html-to-pdf",
   "nycCoverage": false,

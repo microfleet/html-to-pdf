@@ -11,21 +11,20 @@ const upload = require('../utils/upload');
  * @param  {(Object|boolean)} data.params.meta - Document configuration for @microfleet/files.
  * @returns {Promise<*>} Data with file location.
  */
-function render({ params }) {
+async function render({ params }) {
   this.log.debug({ params }, 'preparing to render template');
   const { meta, context, documentOptions } = params;
   const template = this.config.pdfPrinter.getTemplate(params.template);
 
   // render template to html
   const html = mustache.render(template, context);
+  const pdf = await this.chrome.printToPdf(html, documentOptions);
 
-  return this.chrome
-    .printToPdf(html, documentOptions)
-    .then(pdf => (
-      meta === false
-        ? pdf
-        : upload.call(this, meta, pdf).get('uploadId')
-    ));
+  if (meta === false) {
+    return pdf;
+  }
+
+  return upload.call(this, meta, pdf).get('uploadId');
 }
 
 module.exports = render;
