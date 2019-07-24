@@ -25,7 +25,6 @@ const metrics = routerExtension('audit/metrics');
 exports.router = {
   routes: {
     directory: path.resolve(__dirname, '../actions'),
-    prefix: 'pdf',
     setTransportsAsDefault: false,
     transports: [ActionTransport.amqp, ActionTransport.http],
     enabledGenericActions: ['health'],

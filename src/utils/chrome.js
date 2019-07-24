@@ -3,10 +3,12 @@ const noop = require('lodash/noop');
 const ChromeRemote = require('chrome-remote-interface');
 const { encode } = require('64');
 const { Launcher } = require('chrome-launcher');
+const { HttpStatusError } = require('common-errors');
 
 const debug = require('debug')('ms-printer:chrome');
 
 const _SIGINT = 'SIGINT';
+const kStatusCheckHTML = '<html><head><title>status</title></head><body></body></html>';
 
 class Chrome {
   /**
@@ -30,7 +32,7 @@ class Chrome {
   constructor(opts = {}) {
     const {
       logger,
-      timeout = 10000,
+      timeout = 7500,
       ...restOpts
     } = opts;
 
@@ -40,7 +42,7 @@ class Chrome {
     // settings
     this.settings = Object.assign({
       logLevel: 'info',
-      port: 9222,
+      port: 0, // generates random port
       chromeFlags: [
         '--window-size=1024,768',
         '--disable-gpu',
@@ -85,13 +87,42 @@ class Chrome {
    * @returns {Promise<null>}
    */
   async kill() {
+    const { launcher } = this;
+
     // kill chrome instance if has been launched
-    if (this.launcher) {
-      await this.launcher.kill();
+    if (launcher) {
+      this.launcher = null;
+      await launcher.kill();
+    }
+  }
+
+  async status(attempt = 0) {
+    this.log.debug('evaluating chrome health');
+
+    if (this.launcher == null) {
+      throw new HttpStatusError(502, 'chrome not started');
     }
 
-    this.launcher = null;
-    return null;
+    try {
+      await this.printToPdf(kStatusCheckHTML);
+      return true;
+    } catch (e) {
+      this.log.warn({ err: e }, 'failed chrome status check');
+      if (attempt > 0) {
+        throw new HttpStatusError(504, `failed to open tab: ${e.message}`);
+      }
+    }
+
+    try {
+      this.log.warn('restarting chrome due to a healthcheck error');
+      await Promise.all([this.kill(), this.init()]);
+    } catch (e) {
+      this.log.fatal({ err: e }, 'failed to restart chrome');
+      throw new HttpStatusError(500, 'failed to restart chrome');
+    }
+
+    // do a second attempt after restart
+    return this.status(1);
   }
 
   /**

@@ -1,7 +1,11 @@
-const Printer = require('../../src');
-const amqpConfig = require('../configs/amqp');
+const request = require('request-promise').defaults({
+  baseUrl: 'http://localhost:3000',
+});
 
-describe('render action', async () => {
+describe('render action', () => {
+  const Printer = require('../../src');
+  const amqpConfig = require('../configs/amqp');
+
   let service;
   let amqpClient;
 
@@ -83,6 +87,10 @@ describe('render action', async () => {
 
     const data = await send('pdf.render', message);
     expect(data).toMatch(/^[0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$/i);
+  });
+
+  it('healh check should return successful response', async () => {
+    await request.get('/generic/health');
   });
 
   afterAll(async () => {

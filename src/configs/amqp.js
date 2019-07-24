@@ -24,6 +24,7 @@ exports.amqp = {
   },
   router: {
     enabled: true,
+    prefix: 'pdf',
   },
   retry: {
     enabled: true,

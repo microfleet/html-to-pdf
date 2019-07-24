@@ -1,4 +1,5 @@
 const { Microfleet, ConnectorsTypes } = require('@microfleet/core');
+const { PluginHealthCheck } = require('@microfleet/core/lib/utils/pluginHealthStatus');
 const merge = require('lodash/merge');
 
 const Mustache = require('./utils/mustache');
@@ -39,5 +40,6 @@ module.exports = class PdfPrinter extends Microfleet {
     // add connectors & disconnectors
     this.addConnector(ConnectorsTypes.essential, chrome.init.bind(chrome));
     this.addDestructor(ConnectorsTypes.essential, chrome.kill.bind(chrome));
+    this.addHealthCheck(new PluginHealthCheck('chrome', chrome.status.bind(chrome)));
   }
 };
