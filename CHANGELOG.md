@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/microfleet/html-to-pdf/compare/v1.5.3...v1.6.0) (2019-07-24)
+
+
+### Features
+
+* include chrome healthcheck ([7ce4741](https://github.com/microfleet/html-to-pdf/commit/7ce4741))
+
 ## [1.5.3](https://github.com/microfleet/html-to-pdf/compare/v1.5.2...v1.5.3) (2019-07-24)
 
 
