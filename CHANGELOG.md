@@ -1,3 +1,10 @@
+## [1.6.3](https://github.com/microfleet/html-to-pdf/compare/v1.6.2...v1.6.3) (2019-07-25)
+
+
+### Bug Fixes
+
+* disposer need to be called on failed tab ([9b14e87](https://github.com/microfleet/html-to-pdf/commit/9b14e87))
+
 ## [1.6.2](https://github.com/microfleet/html-to-pdf/compare/v1.6.1...v1.6.2) (2019-07-25)
 
 
