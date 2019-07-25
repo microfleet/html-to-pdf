@@ -38,6 +38,7 @@ class Chrome {
 
     // chrome instance
     this.launcher = null;
+    this.restarting = null;
 
     // settings
     this.settings = Object.assign({
@@ -63,6 +64,22 @@ class Chrome {
   }
 
   /**
+   * Verifies that chrome has started
+   * @return {Promise}
+   */
+  async waitForStart() {
+    if (this.starting == null) {
+      return;
+    }
+
+    try {
+      await this.starting;
+    } catch (e) {
+      throw new HttpStatusError(502, 'chrome failed to start');
+    }
+  }
+
+  /**
    * Launches a debugging instance of Chrome on port 9222.
    * @return {Promise<Chrome>}
    */
@@ -73,10 +90,13 @@ class Chrome {
     }
 
     try {
-      this.launcher = await Chrome.launch(this.settings);
+      this.starting = Chrome.launch(this.settings);
+      this.launcher = await this.starting;
     } catch (e) {
       this.launcher = null;
       throw e;
+    } finally {
+      this.starting = null;
     }
 
     return this;
@@ -87,6 +107,12 @@ class Chrome {
    * @returns {Promise<null>}
    */
   async kill() {
+    try {
+      await this.waitForStart();
+    } catch (e) {
+      return;
+    }
+
     const { launcher } = this;
 
     // kill chrome instance if has been launched
@@ -97,11 +123,9 @@ class Chrome {
   }
 
   async status(attempt = 0) {
-    this.log.debug('evaluating chrome health');
+    await this.waitForStart();
 
-    if (this.launcher == null) {
-      throw new HttpStatusError(502, 'chrome not started');
-    }
+    this.log.debug('evaluating chrome health');
 
     try {
       await this.printToPdf(kStatusCheckHTML);
@@ -129,7 +153,9 @@ class Chrome {
    * Opens a new Chrome tab
    * @return {Promise<ChromeDebugProtocol>}
    */
-  openTab() {
+  async openTab() {
+    await this.waitForStart();
+
     return Promise
       .bind(ChromeRemote, this.launcher)
       .then(ChromeRemote.New)
