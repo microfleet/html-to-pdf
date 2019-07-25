@@ -55,7 +55,11 @@ class Chrome {
     }, restOpts);
 
     // use custom logger if provided
-    this.log = logger || debug;
+    this.log = logger || {
+      info: (...args) => debug('[info]', ...args),
+      debug: (...args) => debug('[debug]', ...args),
+    };
+
     this.onLog = params => this.log.info(params.message.text);
     this.timeout = timeout;
 
@@ -150,25 +154,43 @@ class Chrome {
   }
 
   /**
+   * Disposer for assosiated tab/client
+   * @param  {Target}  target
+   * @param  {ChromeRemote}  client
+   * @return {Promise}
+   */
+  static async disposer(target, client) {
+    if (target) await ChromeRemote.Close({ id: target.id }).catch(noop);
+    if (client) await client.close().catch(noop);
+  }
+
+  /**
    * Opens a new Chrome tab
    * @return {Promise<ChromeDebugProtocol>}
    */
   async openTab() {
     await this.waitForStart();
 
-    return Promise
-      .bind(ChromeRemote, this.launcher)
-      .then(ChromeRemote.New)
-      .then(target => ChromeRemote({ target, port: this.launcher.port }))
-      .tap((tab) => {
-        const { Network, Page, Console } = tab;
+    let client;
+    let target;
 
-        Console.messageAdded(this.onLog);
+    try {
+      target = await ChromeRemote.New(this.launcher);
+      this.log.debug({ target }, 'opened new target');
+      client = await ChromeRemote({ target, port: this.launcher.port });
 
-        return Promise.all([Page.enable(), Network.enable()]);
-      })
-      .timeout(this.timeout)
-      .disposer(tab => tab.close().catch(noop));
+      const { Network, Page, Console } = client;
+      Console.messageAdded(this.onLog);
+
+      await Promise
+        .all([Page.enable(), Network.enable()])
+        .timeout(this.timeout);
+    } catch (e) {
+      Chrome.disposer(target, client);
+      throw e;
+    }
+
+    return { target, client };
   }
 
   /**
@@ -177,22 +199,26 @@ class Chrome {
    * @param {Object} opts page printing options
    * @return {Promise<String>} base64 encoded PDF document
    */
-  printToPdf(html, opts = {}) {
-    return Promise.using(this.openTab(), ({ Page }) => {
+  async printToPdf(html, opts = {}) {
+    let tab;
+    try {
+      tab = await this.openTab();
+      const { client: { Page } } = tab;
+
       const url = /^(https?|file|data):/i.test(html)
         ? html
         : `data:text/html;charset=utf-8;base64,${encode(Buffer.from(html))}`;
 
-      return Promise
-        .all([
-          Page.loadEventFired(),
-          Page.navigate({ url }),
-        ])
+      return await Promise
+        .all([Page.loadEventFired(), Page.navigate({ url })])
         .return(Page)
         .call('printToPDF', opts)
         .get('data')
         .timeout(this.timeout);
-    });
+    } finally {
+      // schedules in the "background", no await is needed
+      Chrome.disposer(tab.target, tab.client);
+    }
   }
 }
 

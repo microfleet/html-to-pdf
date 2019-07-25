@@ -21,12 +21,17 @@ describe('chrome', () => {
   });
 
   it('should able to open a tab', async () => {
-    return Promise.using(chrome.openTab(), async ({ Page }) => {
-      await Page.navigate({ url });
-      await Page.loadEventFired();
+    const tab = await chrome.openTab();
+    const { client: { Page } } = tab;
 
-      // TODO: check page contents
-    });
+    try {
+      await Promise.all([
+        Page.navigate({ url }),
+        Page.loadEventFired(),
+      ]);
+    } finally {
+      await Chrome.disposer(tab.target, tab.client);
+    }
   });
 
   it('should able to render a pdf', async () => {
