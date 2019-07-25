@@ -1,3 +1,10 @@
+## [1.6.2](https://github.com/microfleet/html-to-pdf/compare/v1.6.1...v1.6.2) (2019-07-25)
+
+
+### Bug Fixes
+
+* disposing of tabs & targets ([2885f92](https://github.com/microfleet/html-to-pdf/commit/2885f92))
+
 ## [1.6.1](https://github.com/microfleet/html-to-pdf/compare/v1.6.0...v1.6.1) (2019-07-25)
 
 
