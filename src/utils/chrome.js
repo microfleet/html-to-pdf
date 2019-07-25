@@ -217,7 +217,7 @@ class Chrome {
         .timeout(this.timeout);
     } finally {
       // schedules in the "background", no await is needed
-      Chrome.disposer(tab.target, tab.client);
+      if (tab) Chrome.disposer(tab.target, tab.client);
     }
   }
 }
