@@ -1,3 +1,10 @@
+## [1.6.1](https://github.com/microfleet/html-to-pdf/compare/v1.6.0...v1.6.1) (2019-07-25)
+
+
+### Bug Fixes
+
+* improve chrome restart routine ([2aa999d](https://github.com/microfleet/html-to-pdf/commit/2aa999d))
+
 # [1.6.0](https://github.com/microfleet/html-to-pdf/compare/v1.5.3...v1.6.0) (2019-07-24)
 
 

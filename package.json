@@ -1,6 +1,6 @@
 {
   "name": "@microfleet/html-to-pdf",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "description": "Generates PDF files based on the HTML inputs and arbitrary data. Can be handy to create statements. Features integration with @microfleet/files for distributed storage and access control to such files",
   "main": "./lib/index.js",
   "repository": "https://github.com/microfleet/html-to-pdf.git",
