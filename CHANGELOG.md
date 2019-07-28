@@ -1,3 +1,10 @@
+## [1.6.4](https://github.com/microfleet/html-to-pdf/compare/v1.6.3...v1.6.4) (2019-07-28)
+
+
+### Bug Fixes
+
+* only copy of settings is passed on to launcher ([2e76049](https://github.com/microfleet/html-to-pdf/commit/2e76049))
+
 ## [1.6.3](https://github.com/microfleet/html-to-pdf/compare/v1.6.2...v1.6.3) (2019-07-25)
 
 
