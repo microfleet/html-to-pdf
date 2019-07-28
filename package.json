@@ -37,6 +37,7 @@
     "prom-client": "^11.5.3",
     "request": "^2.88.0",
     "request-promise": "^4.2.2",
+    "rfdc": "^1.1.4",
     "stdout-stream": "^1.4.1"
   },
   "devDependencies": {

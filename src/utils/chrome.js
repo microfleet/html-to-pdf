@@ -4,7 +4,7 @@ const ChromeRemote = require('chrome-remote-interface');
 const { encode } = require('64');
 const { Launcher } = require('chrome-launcher');
 const { HttpStatusError } = require('common-errors');
-
+const clone = require('rfdc')({ proto: false, circles: false });
 const debug = require('debug')('ms-printer:chrome');
 
 const _SIGINT = 'SIGINT';
@@ -17,7 +17,7 @@ class Chrome {
    * @return {Promise<Launcher>}
    */
   static async launch(settings) {
-    const launcher = new Launcher(settings);
+    const launcher = new Launcher(clone(settings));
 
     try {
       await launcher.launch();
