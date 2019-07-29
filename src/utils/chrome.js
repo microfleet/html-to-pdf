@@ -2,7 +2,7 @@ const Promise = require('bluebird');
 const noop = require('lodash/noop');
 const ChromeRemote = require('chrome-remote-interface');
 const { encode } = require('64');
-const { Launcher } = require('chrome-launcher');
+const { Launcher, defaultFlags } = require('chrome-launcher');
 const { HttpStatusError } = require('common-errors');
 const clone = require('rfdc')({ proto: false, circles: false });
 const debug = require('debug')('ms-printer:chrome');
@@ -53,6 +53,14 @@ class Chrome {
       ],
       handleSIGINT: false,
     }, restOpts);
+
+    // NOTE: this is a temporary workaround for
+    // https://github.com/GoogleChrome/chrome-launcher/pull/162
+    this.settings.ignoreDefaultFlags = true;
+    this.settings.chromeFlags = [
+      ...defaultFlags(),
+      ...this.settings.chromeFlags,
+    ];
 
     // use custom logger if provided
     this.log = logger || {
