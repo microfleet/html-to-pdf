@@ -1,3 +1,11 @@
+## [1.6.5](https://github.com/microfleet/html-to-pdf/compare/v1.6.4...v1.6.5) (2019-07-29)
+
+
+### Bug Fixes
+
+* correct invocation of defaultFlags() ([7f7866d](https://github.com/microfleet/html-to-pdf/commit/7f7866d))
+* defaultFlags fix ([1ec011c](https://github.com/microfleet/html-to-pdf/commit/1ec011c))
+
 ## [1.6.4](https://github.com/microfleet/html-to-pdf/compare/v1.6.3...v1.6.4) (2019-07-28)
 
 
