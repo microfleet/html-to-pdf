@@ -1,3 +1,10 @@
+## [1.6.6](https://github.com/microfleet/html-to-pdf/compare/v1.6.5...v1.6.6) (2019-08-20)
+
+
+### Bug Fixes
+
+* upgrade node ([25d9789](https://github.com/microfleet/html-to-pdf/commit/25d9789))
+
 ## [1.6.5](https://github.com/microfleet/html-to-pdf/compare/v1.6.4...v1.6.5) (2019-07-29)
 
 
