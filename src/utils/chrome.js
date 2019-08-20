@@ -54,14 +54,6 @@ class Chrome {
       handleSIGINT: false,
     }, restOpts);
 
-    // NOTE: this is a temporary workaround for
-    // https://github.com/GoogleChrome/chrome-launcher/pull/162
-    this.settings.ignoreDefaultFlags = true;
-    this.settings.chromeFlags = [
-      ...Launcher.defaultFlags(),
-      ...this.settings.chromeFlags,
-    ];
-
     // use custom logger if provided
     this.log = logger || {
       info: (...args) => debug('[info]', ...args),
