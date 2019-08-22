@@ -41,7 +41,7 @@ class Chrome {
     this.restarting = null;
 
     // settings
-    this.settings = Object.assign({
+    this.settings = {
       logLevel: 'info',
       port: 0, // generates random port
       chromeFlags: [
@@ -52,7 +52,8 @@ class Chrome {
         '--remote-debugging-address=0.0.0.0',
       ],
       handleSIGINT: false,
-    }, restOpts);
+      ...restOpts,
+    };
 
     // use custom logger if provided
     this.log = logger || {
@@ -60,7 +61,7 @@ class Chrome {
       debug: (...args) => debug('[debug]', ...args),
     };
 
-    this.onLog = params => this.log.info(params.message.text);
+    this.onLog = (params) => this.log.info(params.message.text);
     this.timeout = timeout;
 
     // Kill spawned Chrome process in case of ctrl-C.

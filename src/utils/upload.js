@@ -7,21 +7,21 @@ const retry = require('bluebird-retry');
  * @param {String} source Source base64-encoded string
  * @returns {Buffer}
  */
-const base64ToBuffer = source => Buffer.from(source, 'base64');
+const base64ToBuffer = (source) => Buffer.from(source, 'base64');
 
 /**
  * Calculate a md5 hash of the provided string
  * @param {*} source
  * @returns {String}
  */
-const contentHash = source => crypto.createHash('md5')
+const contentHash = (source) => crypto.createHash('md5')
   .update(source)
   .digest();
 
 // retry on following status codes
 // https://cloud.google.com/storage/docs/exponential-backoff
 const isRetrieble = /^(401|429|5[0-9]{2})$/;
-const testError = error => isRetrieble.test(error.responseCode);
+const testError = (error) => isRetrieble.test(error.responseCode);
 
 /**
  * Upload a document to cloud with optional retry

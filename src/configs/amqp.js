@@ -7,7 +7,7 @@ const {
 
 // quick way to check if action is adhoc
 const renderAction = /\.render$/;
-const isRenderAction = actionName => renderAction.test(actionName);
+const isRenderAction = (actionName) => renderAction.test(actionName);
 
 /**
  * Specifies configuration for AMQP / RabbitMQ lib
