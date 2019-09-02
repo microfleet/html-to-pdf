@@ -493,7 +493,7 @@
     "@hapi/cryptiles" "4.x.x"
     "@hapi/hoek" "8.x.x"
 
-"@hapi/joi@15.x.x", "@hapi/joi@^15.1.0":
+"@hapi/joi@15.x.x", "@hapi/joi@^15.1.1":
   version "15.1.1"
   resolved "https://registry.yarnpkg.com/@hapi/joi/-/joi-15.1.1.tgz#c675b8a71296f02833f8d6d243b34c57b8ce19d7"
   integrity sha512-entf8ZMOK8sc+8YfeOlM8pCfg3b5+WZIKBfUaaJT8UsjAAPjartzxIYm3TIbjvA4u+u++KbcXD38k682nVHDAQ==
@@ -835,12 +835,12 @@
     stdout-stream "^1.4.1"
     yargs-parser "^13.1.1"
 
-"@microfleet/transport-amqp@^14.0.2":
-  version "14.0.2"
-  resolved "https://registry.yarnpkg.com/@microfleet/transport-amqp/-/transport-amqp-14.0.2.tgz#bd576e9352fe9d177245c042a914f3dc798ea456"
-  integrity sha512-rhs0llIPArBngSy0tNkm60VPRc78rIRVkyBJ2CxjfI6gHum6rTqrymIYPH6TI68y56hKAq9zh8cDo+Cupe+SvA==
+"@microfleet/transport-amqp@^15.0.0":
+  version "15.0.0"
+  resolved "https://registry.yarnpkg.com/@microfleet/transport-amqp/-/transport-amqp-15.0.0.tgz#440b7e7f6cf786ddbdc79b168101a14ee0a51b9b"
+  integrity sha512-CXU3/3LzwTKVnpF/C0mclQyXNDuzhld3BNK12xdXrXV9VDLwHEp8jZB7S6w7mziGTAD04DtCYQWsms1lDGeD2Q==
   dependencies:
-    "@hapi/joi" "^15.1.0"
+    "@hapi/joi" "^15.1.1"
     "@microfleet/amqp-coffee" "^1.3.1"
     bluebird "^3.5.5"
     common-errors "^1.0.5"
@@ -850,11 +850,11 @@
     hashlru "^2.3.0"
     is "^3.3.0"
     json-stringify-safe "^5.0.1"
-    lodash "^4.17.11"
+    lodash "^4.17.15"
     object-hash "^1.3.1"
     opentracing "^0.14.4"
-    pino "^5.13.0"
-    uuid "^3.3.2"
+    pino "^5.13.2"
+    uuid "^3.3.3"
 
 "@microfleet/validation@^8.1.2":
   version "8.1.2"
@@ -8376,7 +8376,7 @@ uuid-parse@^1.0.0:
   resolved "https://registry.yarnpkg.com/uuid-parse/-/uuid-parse-1.1.0.tgz#7061c5a1384ae0e1f943c538094597e1b5f3a65b"
   integrity sha512-OdmXxA8rDsQ7YpNVbKSJkNzTw2I+S5WsbMDnCtIWSQaosNAcWtFuI/YK1TjzUI6nbkgiqEyh8gWngfcv8Asd9A==
 
-uuid@^3.3.2:
+uuid@^3.3.2, uuid@^3.3.3:
   version "3.3.3"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.3.3.tgz#4568f0216e78760ee1dbf3a4d2cf53e224112866"
   integrity sha512-pW0No1RGHgzlpHJO1nsVrHKpOEIxkGg1xB+v0ZmdNH5OAeAwzAVrCnI2/6Mtx+Uys6iaylxa+D3g4j63IKKjSQ==
