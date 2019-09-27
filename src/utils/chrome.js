@@ -47,8 +47,8 @@ class Chrome {
       chromeFlags: [
         '--window-size=1024,768',
         '--disable-gpu',
-        '--no-sandbox',
         '--headless',
+        '--disable-software-rasterizer',
         '--remote-debugging-address=0.0.0.0',
       ],
       handleSIGINT: false,
