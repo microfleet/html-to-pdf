@@ -1,3 +1,16 @@
+# [2.0.0](https://github.com/microfleet/html-to-pdf/compare/v1.6.9...v2.0.0) (2019-09-27)
+
+
+### Features
+
+* add seccomp profile ([9c3e3d5](https://github.com/microfleet/html-to-pdf/commit/9c3e3d5))
+
+
+### BREAKING CHANGES
+
+* to improve safety bundle seccomp profile,
+upgrade to chromium 77 and remove --no-sandbox
+
 ## [1.6.9](https://github.com/microfleet/html-to-pdf/compare/v1.6.8...v1.6.9) (2019-09-19)
 
 
