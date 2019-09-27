@@ -787,10 +787,10 @@
     alce "1.x.x"
     yargs "14.0.0"
 
-"@makeomatic/deploy@^9.1.0":
-  version "9.1.0"
-  resolved "https://registry.yarnpkg.com/@makeomatic/deploy/-/deploy-9.1.0.tgz#b68162bc0eafc5d772ea45d144d2d2b7f19dea0c"
-  integrity sha512-jhQ/BSt7Y8ZFZMoth1YFMuvLoR0KQ5aHI0tK8XEP4Bl0BuE6wvPRBkDoO020h9V/UREprHbw5Eo90CCGYzH+UQ==
+"@makeomatic/deploy@^9.1.1":
+  version "9.1.1"
+  resolved "https://registry.yarnpkg.com/@makeomatic/deploy/-/deploy-9.1.1.tgz#bc4f0d97c49567aa9ac09cd1aaa67a25617dfd57"
+  integrity sha512-gCR29hnEGVexyF7Q/EQFqTld6LQBwmoegFx3OLpye09hz+zD3E3BCk8ED4ruXCbVTELvEcK0BltaO5f+dxzYrw==
   dependencies:
     "@commitlint/cli" "^8.1.0"
     bluebird "^3.5.5"
