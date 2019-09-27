@@ -30,8 +30,8 @@ services:
       - "9222:9222"
     volumes:
       - ${PWD}:/src
-    security_opt:
-      - seccomp:${PWD}/seccomp.json
+    cap_add:
+      - SYS_ADMIN
     user: node
     environment:
       NODE_ENV: "test"
