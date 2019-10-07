@@ -834,10 +834,10 @@
     debug "^3.1.0"
     lodash "^4.17.10"
 
-"@microfleet/core@^14.1.2":
-  version "14.1.2"
-  resolved "https://registry.yarnpkg.com/@microfleet/core/-/core-14.1.2.tgz#cf77914782ff1ad17af28e8ee10ec1d1e2b1137a"
-  integrity sha512-gKsY8IHHKnuPEDl/BYyHOedeDqR6Xa54ghRIC+ZjuMQHAkMK1GcfMUjAsj7nNDG6yjEMWwmY8UnekmnSjs43Ig==
+"@microfleet/core@^15.0.0":
+  version "15.0.1"
+  resolved "https://registry.yarnpkg.com/@microfleet/core/-/core-15.0.1.tgz#41725ca84cef00d2ca8d9cd9de95ed2b43c8a894"
+  integrity sha512-mdzBxtj1Cy3h+Rvw/0qRH7HVVgh4rqokLvFMB+cBzwi6ToMmBoBS15oIq2EYcBNJB/y+JqShKw920dZRs0gkZQ==
   dependencies:
     bluebird "^3.5.5"
     bluebird-retry "^0.11.0"
