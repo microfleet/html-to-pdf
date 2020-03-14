@@ -1967,6 +1967,17 @@ chrome-launcher@^0.11.2:
     mkdirp "0.5.1"
     rimraf "^2.6.1"
 
+chrome-launcher@^0.13.0:
+  version "0.13.0"
+  resolved "https://registry.yarnpkg.com/chrome-launcher/-/chrome-launcher-0.13.0.tgz#3303772a873513e8c484d031cc6f7c0a3348cd16"
+  integrity sha512-/XnGtoHkunox+VTAwHy6vWWrsYW4PdJlmTrELDBRaMqCF17ZLFaqcToxg3Sj6w4ui3GDMVfXv1+zcq0TTRCMBQ==
+  dependencies:
+    "@types/node" "*"
+    is-wsl "^2.1.0"
+    lighthouse-logger "^1.0.0"
+    mkdirp "0.5.1"
+    rimraf "^2.6.1"
+
 chrome-remote-interface@^0.28.0:
   version "0.28.0"
   resolved "https://registry.yarnpkg.com/chrome-remote-interface/-/chrome-remote-interface-0.28.0.tgz#dfafff3538ad549cfe161b4c4f0d5ff19aed6f2d"
