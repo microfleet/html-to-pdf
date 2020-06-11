@@ -10,13 +10,7 @@ const Chrome = require('./utils/chrome');
  * @param {Object} opts - any overrides
  * @returns {Mailer}
  */
-module.exports = class PdfPrinter extends Microfleet {
-  /**
-   * Default options that are merged into core
-   * @type {Object}
-   */
-  static defaultOpts = require('./config').get('/', { env: process.env.NODE_ENV });
-
+class PdfPrinter extends Microfleet {
   /**
    * Updates default options and sets up predefined accounts
    * @param  {Object} opts
@@ -42,4 +36,12 @@ module.exports = class PdfPrinter extends Microfleet {
     this.addDestructor(ConnectorsTypes.essential, chrome.kill.bind(chrome));
     this.addHealthCheck(new PluginHealthCheck('chrome', chrome.status.bind(chrome)));
   }
-};
+}
+
+/**
+ * Default options that are merged into core
+ * @type {Object}
+ */
+PdfPrinter.defaultOpts = require('./config').get('/', { env: process.env.NODE_ENV });
+
+module.exports = PdfPrinter;
