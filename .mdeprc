@@ -1,8 +1,15 @@
 {
-  "node": "10.16.3",
+  "node": "12.18",
   "repo": "microfleet",
   "p": "html-to-pdf",
+  "tester_flavour": "chrome-tester",
   "nycCoverage": false,
+  "auto_compose": true,
+  "with_local_compose": true,
+  "services": [
+    "redisCluster",
+    "rabbitmq"
+  ],
   "tests": "__tests__/**/*.spec.js",
   "test_framework": "jest --coverageDirectory <coverageDirectory> --detectOpenHandles --runTestsByPath",
   "docker_compose": "__tests__/docker-compose.yml",

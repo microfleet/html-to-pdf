@@ -1,35 +1,22 @@
-version: '2'
+version: '3'
+
 services:
-  redis:
-    image: makeomatic/redis-cluster:3.2.9
-
-  rabbitmq:
-    image: rabbitmq:3-alpine
-
   ms-files:
-    image: makeomatic/ms-files
+    image: makeomatic/ms-files:12.18
     depends_on:
-      - redis
+      - redis-cluster
       - rabbitmq
     volumes:
-      - ./configs:/configs:ro
-      - ./.env:/src/.env:ro
+      - ${PWD}/__tests__/configs:/configs:ro
+      - ${PWD}/__tests__/.env:/src/.env:ro
     environment:
       NCONF_FILE_PATH: '["/configs/amqp.js","/configs/redis.js","/configs/files.js"]'
       NODE_ENV: production
 
   tester:
-    container_name: tester
-    image: makeomatic/node:10.16.3-chrome-tester
-    links:
-      - redis
-      - rabbitmq
-    working_dir: /src
     ports:
       - "9229:9229"
       - "9222:9222"
-    volumes:
-      - ${PWD}:/src
     cap_add:
       - SYS_ADMIN
     user: node
