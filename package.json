@@ -25,7 +25,7 @@
     "@hapi/hapi": "^18.4.0",
     "@microfleet/core": "^14.1.2",
     "@microfleet/transport-amqp": "^15.0.0",
-    "@microfleet/validation": "^8.1.2",
+    "@microfleet/validation": "^9.0.0",
     "bluebird": "^3.5.5",
     "bluebird-retry": "^0.11.0",
     "chrome-launcher": "^0.11.2",
